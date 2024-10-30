@@ -1,0 +1,123 @@
+/* Style untuk halaman detail deskripsi */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.deskripsi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.kartu {
+    display: flex;
+    max-width: 800px; /* Ukuran maksimal untuk card */
+    width: 100%; /* Agar menyesuaikan dengan container */
+    background-color: blanchedalmond;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s; /* Tambahkan efek transisi */
+}
+
+.kartu:hover {
+    transform: scale(1.02); /* Efek zoom saat hover */
+}
+
+.kartu img {
+    width: 40%; /* Gambar menempati 40% lebar */
+    height: auto;
+    object-fit: cover;
+}
+
+.isi {
+    width: 60%; /* Container isi menempati 60% lebar */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Ubah untuk memposisikan konten di bagian atas */
+}
+
+.isi h2 {
+    margin: 0;
+    font-size: 24px; /* Ukuran lebih besar untuk nama barang */
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.isi p {
+    font-size: 16px; /* Ukuran lebih kecil untuk deskripsi */
+    color: #666;
+}
+
+/* pemisah */
+
+.deskripsi .kartu {
+    height: 500px;
+    display: flex;   
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.deskripsi img {
+    max-width: 40%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-top: -100px;
+}
+
+.deskripsi .isi {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Nama barang besar dan berada di tengah */
+.isi h2 {
+    font-size: 36px; /* Besar */
+    text-align: center; /* Tengah */
+    margin-bottom: 15px;
+}
+
+/* Harga barang dengan ukuran sedang */
+.isi h4 {
+    font-size: 24px;
+    color: #333; /* Opsional: ubah warna */
+    margin-bottom: 10px;
+}
+
+/* Deskripsi dengan ukuran agak sedang */
+.deskripsi-container p {
+    font-size: 18px;
+    line-height: 1.6; /* Jarak antar baris */
+}
+
+/* Kategori tetap sama */
+.isi h4:last-of-type {
+    font-size: 1em; /* Ukuran kecil */
+margin: 5px 0;
+color: #777;
+}
+
+/* Tombol tambah lebih besar */
+.tambah {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 20px; /* Ukuran lumayan besar */
+    background-color: #4CAF50; /* Warna tombol */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.tambah:hover {
+    background-color: #45a049; /* Warna saat hover */
+}
