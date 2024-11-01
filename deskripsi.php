@@ -3,7 +3,7 @@
 require 'connection/koneksi.php';
 
 // Cek apakah ID ada di URL
-if (isset($_GET['id_produk'])) {
+if (isset($_GET['id_produk'])){
     // Ambil ID dari URL
     $id_produk = $_GET['id_produk'];
 
@@ -17,10 +17,12 @@ if (isset($_GET['id_produk'])) {
         echo "row tidak ditemukan!";
         exit;
     }
-} else {
+}else {
     echo "barang tidak ada!";
     exit;
 }
+
+// Cek apakah tombol 'Tambah ke Keranjang' ditekan
 
 $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', 'guest'
 
@@ -42,7 +44,8 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
 <link rel="stylesheet" href="style/deskripsi.css">
 <body>
 
-<div class="deskripsi">
+<form action="keranjang/tambah.php" method="post">
+    <div class="deskripsi">
         <div class="kartu">
         <img src="halaman/img/<?= $row['gambar']; ?>" alt="<?= $row['nama']; ?>">
             <div class="isi">
@@ -59,17 +62,17 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
                 <input type="hidden" name="harga" value="<?= $row['harga']; ?>">
 
                 <?php if ($role === 'admin'): ?>
-                    <!-- Input Kuantitas -->
-                <label for="kuantitas">Kuantitas:</label>
-                <input type="number" name="kuantitas" value="1" min="1" required>
+                    <!-- Input quantity -->
+                <label for="quantity">quantity:</label>
+                <input type="number" name="quantity" value="1" min="1" required>
                 <!-- Tombol Tambah ke Keranjang -->
                 <input type="submit" class="btn" value="Tambah ke Keranjang" name="add_to_cart">
 
             <?php elseif ($role === 'customer'): ?>
                 
-                    <!-- Input Kuantitas -->
-                <label for="kuantitas">Kuantitas:</label>
-                <input type="number" name="kuantitas" value="1" min="1" required>
+                    <!-- Input quantity -->
+                <label for="quantity">quantity:</label>
+                <input type="number" name="quantity" value="1" min="1" required>
 
                 <!-- Tombol Tambah ke Keranjang -->
                 <input type="submit" class="btn" value="Tambah ke Keranjang" name="add_to_cart">
@@ -81,6 +84,7 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
             </div>
         </div>
     </div>
+</form>
 
 </body>
 </html>
