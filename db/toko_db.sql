@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Okt 2024 pada 02.45
+-- Waktu pembuatan: 01 Nov 2024 pada 10.52
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -34,6 +34,13 @@ CREATE TABLE `keranjang` (
   `quantity` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `keranjang`
+--
+
+INSERT INTO `keranjang` (`id_keranjang`, `id_user`, `id_produk`, `quantity`) VALUES
+(14, 6, 14, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -54,8 +61,8 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `nama`, `harga`, `kategori`, `deskripsi`, `gambar`) VALUES
-(11, 'barang 1', 10000, 'pisang, makanan', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi, doloremque tenetur ipsa molestias molestiae minima voluptas voluptates quisquam labore praesentium ea error expedita animi, at voluptatibus ad neque beatae impedit.\r\n', '67208fad371b7.jpg'),
-(12, 'barang 2', 20000, 'baso, makanan', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Commodi, doloremque tenetur ipsa molestias molestiae minima voluptas voluptates quisquam labore praesentium ea error expedita animi, at voluptatibus ad neque beatae impedit.\r\n', '67208fd21a5d1.jpg');
+(14, 'pangsit coklat', 5000, 'makanan, pangsit', 'ini pangsit coklar', '67231dd793638.jpeg'),
+(15, 'bakso', 10000, 'makanan', 'ini bakso enak', '6723234ebcc91.jpg');
 
 -- --------------------------------------------------------
 
@@ -77,7 +84,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `username`, `email`, `password`, `role`) VALUES
 (4, 'SI Imoet', 'imoetkun@gmail.com', '123', 'admin'),
-(5, 'udin', 'udingan@gmail.com', '123', 'customer');
+(5, 'udin', 'udingan@gmail.com', '123', 'customer'),
+(6, 'amba', 'ambalabu@gmail.com', '123', 'customer');
 
 --
 -- Indexes for dumped tables
@@ -112,19 +120,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
