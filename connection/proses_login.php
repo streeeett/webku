@@ -1,60 +1,38 @@
 <?php 
-// mengaktifkan session pada php
+// Mulai session
 session_start();
- 
-// menghubungkan php dengan koneksi database
+
+// Koneksi ke database
 require '../connection/koneksi.php';
- 
-// menangkap data yang dikirim dari form login
+
+// Tangkap data dari form
 $username = $_POST['username'];
 $email = $_POST['email'];
 $password = $_POST['password'];
- 
- 
-// menyeleksi data user dengan username dan password yang sesuai
-$login = mysqli_query($conn,"SELECT * FROM users WHERE username='$username' AND email= '$email' AND password='$password'");
-// menghitung jumlah data yang ditemukan
-$cek = mysqli_num_rows($login);
- 
-// cek apakah username dan password di temukan pada database
-if($cek > 0){
- 
-	$data = mysqli_fetch_assoc($login);
- 
-	// cek jika user login sebagai admin
-	if($data['role']=="admin"){
- 
-		// buat session login dan username
-		$_SESSION['id_user'] = $id_user;
-		$_SESSION['username'] = $username;
-		$_SESSION['email'] = $email;
-		$_SESSION['role'] = "admin";
-		// alihkan ke halaman dashboard admin
-		header("location:../halaman.php");
- 
-	// cek jika user login sebagai pegawai
-	}else if($data['role']=="customer"){
-		// buat session login dan username
-		$_SESSION['id_user'] = $id_user;
-		$_SESSION['username'] = $username;
-		$_SESSION['email'] = $email;
-		$_SESSION['role'] = "customer";
-		// alihkan ke halaman dashboard pegawai
-		header("location:../halaman.php");
- 
-	// cek jika user login sebagai pengurus
-	}else{
- 
-		// alihkan ke halaman login kembali
-		header("location:login.php?pesan=gagal");
-	}	
-}else{
-	header("location:login.php?pesan=gagal");
+
+// Verifikasi data user
+$login = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND email='$email' AND password='$password'");
+
+// Cek apakah user ditemukan
+if (mysqli_num_rows($login) > 0) {
+    $data = mysqli_fetch_assoc($login);
+    
+    // Set session sesuai dengan role
+    $_SESSION['id_user'] = $data['id_user']; // Sesuaikan 'id_user' dengan kolom yang benar di database
+    $_SESSION['username'] = $data['username'];
+    $_SESSION['email'] = $data['email'];
+    $_SESSION['role'] = $data['role'];
+    
+    // Redirect ke halaman sesuai role
+    if ($data['role'] === "admin") {
+        header("location:../halaman.php");
+    } else if ($data['role'] === "customer") {
+        header("location:../halaman.php");
+    } else {
+        header("location:login.php?pesan=gagal");
+    }
+} else {
+    // Redirect jika gagal login
+    header("location:login.php?pesan=gagal");
 }
- 
-
-
-
-
-
 ?>

@@ -1,22 +1,30 @@
 <?php
 require '../connection/koneksi.php';
 
-// Mendapatkan ID barang dari URL
+// Mendapatkan ID produk dari URL
 $id_produk = $_GET['id_produk'];
 
-// Query untuk mengambil data berdasarkan ID
+// Query untuk mengambil data produk berdasarkan ID
 $query = "SELECT * FROM produk WHERE id_produk = $id_produk";
 $result = mysqli_query($conn, $query);
 $barang = mysqli_fetch_assoc($result);
 
+// Query untuk mengambil data varian yang terkait dengan produk
+$queryVarian = "SELECT * FROM varian WHERE id_produk = $id_produk";
+$resultVarian = mysqli_query($conn, $queryVarian);
+$varianList = [];
+while ($row = mysqli_fetch_assoc($resultVarian)) {
+    $varianList[] = $row;
+}
+
 // Cek apakah tombol submit telah diklik
 if (isset($_POST["submit"])) {
-
     $nama = $_POST["nama"];
     $deskripsi = $_POST["deskripsi"];
     $kategori = $_POST["kategori"];
     $harga = $_POST["harga"];
-    
+    $varianArray = $_POST["varian"]; // Ambil array varian dari input
+
     // Cek apakah pengguna mengupload gambar baru atau tidak
     if ($_FILES["gambar"]["error"] === 4) {
         $newImageName = $barang['gambar'];
@@ -26,7 +34,7 @@ if (isset($_POST["submit"])) {
         $tmpName = $_FILES["gambar"]["tmp_name"];
 
         $validImageExtension = ['jpg', 'jpeg', 'png'];
-        $imageExtension = strtolower(end(explode('.', $fileName)));
+        $imageExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
         if (!in_array($imageExtension, $validImageExtension)) {
             echo "<script>alert('Ekstensi gambar tidak valid!');</script>";
@@ -41,6 +49,7 @@ if (isset($_POST["submit"])) {
         }
     }
 
+    // Update data produk
     $query = "UPDATE produk SET 
                 nama = '$nama', 
                 deskripsi = '$deskripsi', 
@@ -50,6 +59,18 @@ if (isset($_POST["submit"])) {
               WHERE id_produk = $id_produk";
     
     mysqli_query($conn, $query);
+
+    // Update data varian
+    // Hapus varian yang tidak ada di array input
+    $queryDeleteVarian = "DELETE FROM varian WHERE id_produk = $id_produk";
+    mysqli_query($conn, $queryDeleteVarian);
+
+    // Tambah atau update varian yang diinput
+    foreach ($varianArray as $varian) {
+        $varian = htmlspecialchars($varian);
+        $queryVarian = "INSERT INTO varian (id_produk, nama_varian) VALUES ('$id_produk', '$varian')";
+        mysqli_query($conn, $queryVarian);
+    }
 
     echo "<script>
             alert('Data berhasil diubah!');
@@ -100,6 +121,22 @@ if (isset($_POST["submit"])) {
                                 <img src="img/<?= $barang['gambar']; ?>" width="100" class="rounded">
                             </div>
                         </div>
+
+                        <!-- Input Varian Rasa -->
+                        <div id="varianContainer" class="mb-3">
+                            <label class="form-label">Varian Rasa</label>
+                            <?php foreach ($varianList as $varian): ?>
+                                <div class="input-group mb-2">
+                                    <input type="text" name="varian[]" class="form-control" value="<?= htmlspecialchars($varian['nama_varian']); ?>" required>
+                                    <button type="button" class="btn btn-outline-danger" onclick="removeVarianField(this)">Hapus</button>
+                                </div>
+                            <?php endforeach; ?>
+                            <div class="input-group mb-2">
+                                <input type="text" name="varian[]" class="form-control" placeholder="Masukkan varian rasa baru">
+                                <button type="button" class="btn btn-outline-secondary" onclick="edit()">Tambah Varian</button>
+                            </div>
+                        </div>
+
                         <div class="d-grid">
                             <button type="submit" name="submit" class="btn btn-success">Simpan Perubahan</button>
                         </div>
@@ -109,6 +146,23 @@ if (isset($_POST["submit"])) {
         </div>
     </div>
 </div>
+
+<script>
+function edit() {
+    const container = document.getElementById("varianContainer");
+    const inputGroup = document.createElement("div");
+    inputGroup.classList.add("input-group", "mb-2");
+    inputGroup.innerHTML = `
+        <input type="text" name="varian[]" class="form-control" placeholder="Masukkan varian rasa">
+        <button type="button" class="btn btn-outline-danger" onclick="removeVarianField(this)">Hapus</button>
+    `;
+    container.appendChild(inputGroup);
+}
+
+function removeVarianField(button) {
+    button.parentElement.remove();
+}
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -42,11 +42,12 @@ if (isset($_POST["cari"])) {
             <?php if ($role === 'admin'): ?>
               <li><a class="dropdown-item" href="halaman/tambah.php"><i class="fa-solid fa-plus"></i> Tambah produk</a></li>
               <li><a class="dropdown-item" href="admin/data.php"><i class="fa-solid fa-chart-simple"></i> Data</a></li>
+              <li><a class="dropdown-item" href="keranjang/keranjang.php"><i class="fa-solid fa-cart-shopping"></i> Keranjang</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logreg/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             <?php elseif ($role === 'customer'): ?>
-              <li><a class="dropdown-item" href="customer/cart.php"><i class="fa-solid fa-cart-shopping"></i> Keranjang</a></li>
-              <li><a class="dropdown-item" href="customer/profile.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
+              <li><a class="dropdown-item" href="keranjang/keranjang.php"><i class="fa-solid fa-cart-shopping"></i> Keranjang</a></li>
+              <li><a class="dropdown-item" href="profil/profil.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logreg/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             <?php else: ?>
