@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Nov 2024 pada 10.52
+-- Waktu pembuatan: 04 Nov 2024 pada 12.54
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -31,15 +31,17 @@ CREATE TABLE `keranjang` (
   `id_keranjang` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_produk` int(11) NOT NULL,
-  `quantity` int(11) DEFAULT 1
+  `quantity` int(11) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_varian` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `keranjang`
 --
 
-INSERT INTO `keranjang` (`id_keranjang`, `id_user`, `id_produk`, `quantity`) VALUES
-(14, 6, 14, 1);
+INSERT INTO `keranjang` (`id_keranjang`, `id_user`, `id_produk`, `quantity`, `created_at`, `id_varian`) VALUES
+(9, 7, 20, 1, '2024-11-04 11:43:20', 12);
 
 -- --------------------------------------------------------
 
@@ -61,8 +63,7 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `nama`, `harga`, `kategori`, `deskripsi`, `gambar`) VALUES
-(14, 'pangsit coklat', 5000, 'makanan, pangsit', 'ini pangsit coklar', '67231dd793638.jpeg'),
-(15, 'bakso', 10000, 'makanan', 'ini bakso enak', '6723234ebcc91.jpg');
+(20, 'pangsit enak', 10000, 'makanan', 'ini pangsit enak', '6728b214cbf92.jpg');
 
 -- --------------------------------------------------------
 
@@ -85,7 +86,27 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id_user`, `username`, `email`, `password`, `role`) VALUES
 (4, 'SI Imoet', 'imoetkun@gmail.com', '123', 'admin'),
 (5, 'udin', 'udingan@gmail.com', '123', 'customer'),
-(6, 'amba', 'ambalabu@gmail.com', '123', 'customer');
+(6, 'amba', 'ambalabu@gmail.com', '123', 'customer'),
+(7, 'azfar', 'azfarsutanfauzan@gmail.com', '1234', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `varian`
+--
+
+CREATE TABLE `varian` (
+  `id_varian` int(11) NOT NULL,
+  `id_produk` int(11) DEFAULT NULL,
+  `nama_varian` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `varian`
+--
+
+INSERT INTO `varian` (`id_varian`, `id_produk`, `nama_varian`) VALUES
+(12, 20, 'asin');
 
 --
 -- Indexes for dumped tables
@@ -97,7 +118,8 @@ INSERT INTO `users` (`id_user`, `username`, `email`, `password`, `role`) VALUES
 ALTER TABLE `keranjang`
   ADD PRIMARY KEY (`id_keranjang`),
   ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_produk` (`id_produk`);
+  ADD KEY `id_produk` (`id_produk`),
+  ADD KEY `keranjang_ibfk_3` (`id_varian`);
 
 --
 -- Indeks untuk tabel `produk`
@@ -113,6 +135,13 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indeks untuk tabel `varian`
+--
+ALTER TABLE `varian`
+  ADD PRIMARY KEY (`id_varian`),
+  ADD KEY `id_produk` (`id_produk`);
+
+--
 -- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
@@ -120,19 +149,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT untuk tabel `varian`
+--
+ALTER TABLE `varian`
+  MODIFY `id_varian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -142,8 +177,15 @@ ALTER TABLE `users`
 -- Ketidakleluasaan untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  ADD CONSTRAINT `keranjang_ibfk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`),
-  ADD CONSTRAINT `keranjang_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+  ADD CONSTRAINT `keranjang_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE,
+  ADD CONSTRAINT `keranjang_ibfk_2` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE,
+  ADD CONSTRAINT `keranjang_ibfk_3` FOREIGN KEY (`id_varian`) REFERENCES `varian` (`id_varian`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `varian`
+--
+ALTER TABLE `varian`
+  ADD CONSTRAINT `varian_ibfk_1` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

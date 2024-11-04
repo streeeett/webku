@@ -8,38 +8,29 @@ if (!isset($_SESSION['id_user'])) {
     exit;
 }
 
-// Tangkap data dari URL
+// Tangkap data dari URL dan validasi
 $id_user = $_SESSION['id_user'];
-<<<<<<< HEAD
-$id_produk = $_GET['id_produk'];
+$id_produk = isset($_GET['id_produk']) ? (int) $_GET['id_produk'] : 0;
 
-// Hapus produk dari keranjang
-$query = "DELETE FROM keranjang WHERE id_user = ? AND id_produk = ?";
-$stmt = mysqli_prepare($conn, $query);
-mysqli_stmt_bind_param($stmt, "ii", $id_user, $id_produk);
+// Periksa apakah $id_produk valid
+if ($id_produk > 0) {
+    // Hanya menghapus produk dari keranjang, tidak menghapus data varian
+    $queryDeleteKeranjang = "DELETE FROM keranjang WHERE id_user = ? AND id_produk = ?";
+    $stmtKeranjang = mysqli_prepare($conn, $queryDeleteKeranjang);
+    mysqli_stmt_bind_param($stmtKeranjang, 'ii', $id_user, $id_produk);
+    $deleteKeranjangSuccess = mysqli_stmt_execute($stmtKeranjang);
+    mysqli_stmt_close($stmtKeranjang);
 
-if (mysqli_stmt_execute($stmt)) {
-    echo "<script>alert('Produk berhasil dihapus dari keranjang!'); window.location.href='keranjang.php';</script>";
+    // Cek apakah operasi berhasil
+    if ($deleteKeranjangSuccess) {
+        echo "<script>alert('Produk berhasil dihapus dari keranjang!'); window.location.href='keranjang.php';</script>";
+    } else {
+        echo "<script>alert('Gagal menghapus produk dari keranjang.'); window.location.href='keranjang.php';</script>";
+    }
 } else {
-    echo "<script>alert('Gagal menghapus produk dari keranjang.'); window.location.href='keranjang.php';</script>";
+    echo "<script>alert('ID produk tidak valid.'); window.location.href='keranjang.php';</script>";
 }
 
-mysqli_stmt_close($stmt);
 mysqli_close($conn);
 ?>
-=======
-
-// Hapus produk dari keranjang
-// $query = "DELETE FROM keranjang WHERE id_user = ? AND id_produk = ?";
-// $stmt = mysqli_prepare($conn, $query);
-// mysqli_stmt_bind_param($stmt, "ii", $id_user, $id_produk);
-
-
-    $id_produk = $_GET['id_produk'];
-    mysqli_query($conn, "DELETE FROM `keranjang` WHERE id_produk = '$id_produk'");
-    header('location:keranjang.php');
- 
- 
- 
- ?>
->>>>>>> a5f4d975c6beefa0110785810ba45fb2446ebd54
+`

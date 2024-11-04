@@ -47,11 +47,7 @@ if (isset($_POST["cari"])) {
               <li><a class="dropdown-item" href="logreg/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             <?php elseif ($role === 'customer'): ?>
               <li><a class="dropdown-item" href="keranjang/keranjang.php"><i class="fa-solid fa-cart-shopping"></i> Keranjang</a></li>
-<<<<<<< HEAD
               <li><a class="dropdown-item" href="profil/profil.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
-=======
-              <li><a class="dropdown-item" href="customer/profile.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
->>>>>>> a5f4d975c6beefa0110785810ba45fb2446ebd54
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logreg/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             <?php else: ?>

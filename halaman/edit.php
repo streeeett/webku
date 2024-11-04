@@ -133,7 +133,7 @@ if (isset($_POST["submit"])) {
                             <?php endforeach; ?>
                             <div class="input-group mb-2">
                                 <input type="text" name="varian[]" class="form-control" placeholder="Masukkan varian rasa baru">
-                                <button type="button" class="btn btn-outline-secondary" onclick="edit()">Tambah Varian</button>
+                                <button type="button" class="btn btn-outline-secondary" onclick="addVarianField()">Tambah Varian</button>
                             </div>
                         </div>
 
@@ -148,7 +148,7 @@ if (isset($_POST["submit"])) {
 </div>
 
 <script>
-function edit() {
+function addVarianField() {
     const container = document.getElementById("varianContainer");
     const inputGroup = document.createElement("div");
     inputGroup.classList.add("input-group", "mb-2");
