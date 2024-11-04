@@ -11,12 +11,20 @@ if (!isset($_SESSION['id_user'])) {
 // Ambil id_user dari session
 $id_user = $_SESSION['id_user'];
 
+<<<<<<< HEAD
 // Query untuk mengambil produk yang ada di keranjang beserta varian rasa yang dipilih
 $query = "
     SELECT produk.id_produk, produk.nama, produk.gambar, produk.harga, keranjang.quantity, varian.nama_varian 
     FROM keranjang
     JOIN produk ON keranjang.id_produk = produk.id_produk
     LEFT JOIN varian ON keranjang.id_varian = varian.id_varian
+=======
+// Query untuk mengambil produk yang ada di keranjang
+$query = "
+    SELECT produk.id_produk, produk.nama, produk.gambar, produk.harga, keranjang.quantity
+    FROM keranjang
+    JOIN produk ON keranjang.id_produk = produk.id_produk
+>>>>>>> a5f4d975c6beefa0110785810ba45fb2446ebd54
     WHERE keranjang.id_user = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('i', $id_user);
@@ -42,7 +50,10 @@ $result = $stmt->get_result();
                     <tr>
                         <th>Foto Produk</th>
                         <th>Nama Produk</th>
+<<<<<<< HEAD
                         <th>Varian</th>
+=======
+>>>>>>> a5f4d975c6beefa0110785810ba45fb2446ebd54
                         <th>Harga</th>
                         <th>Quantity</th>
                         <th>Total Harga</th>
@@ -61,7 +72,10 @@ $result = $stmt->get_result();
                             <img src="../halaman/img/<?= htmlspecialchars($row['gambar']); ?>" alt="<?= htmlspecialchars($row['nama']); ?>" style="width: 80px;">
                         </td>
                         <td><?= htmlspecialchars($row['nama']); ?></td>
+<<<<<<< HEAD
                         <td><?= htmlspecialchars($row['nama_varian']) ?: 'Tidak ada varian'; ?></td> <!-- Tampilkan nama varian -->
+=======
+>>>>>>> a5f4d975c6beefa0110785810ba45fb2446ebd54
                         <td>Rp <?= number_format($row['harga'], 2, ',', '.'); ?></td>
                         <td>
                             <form action="update_keranjang.php" method="post" class="d-flex">
@@ -77,7 +91,11 @@ $result = $stmt->get_result();
                     </tr>
                     <?php endwhile; ?>
                     <tr>
+<<<<<<< HEAD
                         <td colspan="5" class="text-end"><strong>Total Belanja</strong></td>
+=======
+                        <td colspan="4" class="text-end"><strong>Total Belanja</strong></td>
+>>>>>>> a5f4d975c6beefa0110785810ba45fb2446ebd54
                         <td colspan="2"><strong>Rp <?= number_format($total_belanja, 2, ',', '.'); ?></strong></td>
                     </tr>
                 </tbody>

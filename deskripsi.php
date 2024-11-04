@@ -3,7 +3,7 @@
 require 'connection/koneksi.php';
 
 // Cek apakah ID ada di URL
-if (isset($_GET['id_produk'])) {
+if (isset($_GET['id_produk'])){
     // Ambil ID dari URL
     $id_produk = $_GET['id_produk'];
 
@@ -21,12 +21,16 @@ if (isset($_GET['id_produk'])) {
         echo "row tidak ditemukan!";
         exit;
     }
-} else {
+}else {
     echo "barang tidak ada!";
     exit;
 }
 
 // Cek apakah tombol 'Tambah ke Keranjang' ditekan
+<<<<<<< HEAD
+=======
+
+>>>>>>> a5f4d975c6beefa0110785810ba45fb2446ebd54
 $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', 'guest'
 ?>
 
@@ -57,6 +61,7 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
                 <input type="hidden" name="nama" value="<?= htmlspecialchars($row['nama']); ?>">
                 <input type="hidden" name="harga" value="<?= $row['harga']; ?>">
 
+<<<<<<< HEAD
                 <!-- Pilihan Varian Rasa -->
                 <input type="hidden" name="id_produk" value="<?= $row['id_produk']; ?>">
     
@@ -83,6 +88,20 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
                     <!-- Tombol Tambah ke Keranjang -->
                     <input type="submit" class="btn" value="Tambah ke Keranjang" name="add_to_cart">
                 <?php endif; ?>    
+=======
+                <?php if ($role === 'admin'): ?>
+                    <!-- Input quantity -->
+                <label for="quantity">quantity:</label>
+                <input type="number" name="quantity" value="1" min="1" required>
+                <!-- Tombol Tambah ke Keranjang -->
+                <input type="submit" class="btn" value="Tambah ke Keranjang" name="add_to_cart">
+
+            <?php elseif ($role === 'customer'): ?>
+                
+                    <!-- Input quantity -->
+                <label for="quantity">quantity:</label>
+                <input type="number" name="quantity" value="1" min="1" required>
+>>>>>>> a5f4d975c6beefa0110785810ba45fb2446ebd54
 
             </div>
         </div>

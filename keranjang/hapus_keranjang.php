@@ -10,6 +10,7 @@ if (!isset($_SESSION['id_user'])) {
 
 // Tangkap data dari URL
 $id_user = $_SESSION['id_user'];
+<<<<<<< HEAD
 $id_produk = $_GET['id_produk'];
 
 // Hapus produk dari keranjang
@@ -26,3 +27,19 @@ if (mysqli_stmt_execute($stmt)) {
 mysqli_stmt_close($stmt);
 mysqli_close($conn);
 ?>
+=======
+
+// Hapus produk dari keranjang
+// $query = "DELETE FROM keranjang WHERE id_user = ? AND id_produk = ?";
+// $stmt = mysqli_prepare($conn, $query);
+// mysqli_stmt_bind_param($stmt, "ii", $id_user, $id_produk);
+
+
+    $id_produk = $_GET['id_produk'];
+    mysqli_query($conn, "DELETE FROM `keranjang` WHERE id_produk = '$id_produk'");
+    header('location:keranjang.php');
+ 
+ 
+ 
+ ?>
+>>>>>>> a5f4d975c6beefa0110785810ba45fb2446ebd54
