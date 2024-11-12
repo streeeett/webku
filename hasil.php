@@ -87,7 +87,7 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
     <?php else: ?>
       <p>Tidak ada produk yang ditemukan.</p>
     <?php endif; ?>
-    <a href="index.php" class="btn btn-secondary mt-3">Kembali</a>
+    <a href="halaman.php" class="btn btn-secondary mt-3">Kembali</a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -10,19 +10,19 @@ if (isset($_POST["cari"])) {
 
 <nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Shop</a>
+    <a class="navbar-brand" href="halaman.php">Shop</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="halaman.php"><i class="fa-solid fa-house"></i> Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
-        </li>
+        </li> -->
 
       </ul>
 
@@ -41,17 +41,13 @@ if (isset($_POST["cari"])) {
           <ul class="dropdown-menu">
             <?php if ($role === 'admin'): ?>
               <li><a class="dropdown-item" href="halaman/tambah.php"><i class="fa-solid fa-plus"></i> Tambah produk</a></li>
-              <li><a class="dropdown-item" href="admin/data.php"><i class="fa-solid fa-chart-simple"></i> Data</a></li>
+              <li><a class="dropdown-item" href="main/data.php"><i class="fa-solid fa-chart-simple"></i> Data</a></li>
               <li><a class="dropdown-item" href="keranjang/keranjang.php"><i class="fa-solid fa-cart-shopping"></i> Keranjang</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logreg/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             <?php elseif ($role === 'customer'): ?>
               <li><a class="dropdown-item" href="keranjang/keranjang.php"><i class="fa-solid fa-cart-shopping"></i> Keranjang</a></li>
-<<<<<<< HEAD
               <li><a class="dropdown-item" href="profil/profil.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
-=======
-              <li><a class="dropdown-item" href="customer/profile.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
->>>>>>> a5f4d975c6beefa0110785810ba45fb2446ebd54
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logreg/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             <?php else: ?>

@@ -11,7 +11,6 @@ if (!isset($_SESSION['id_user'])) {
 // Ambil ID user dari sesi
 $id_user = $_SESSION['id_user'];
 
-<<<<<<< HEAD
 // Cek apakah produk, varian, dan kuantitas sudah diterima
 if (isset($_POST['add_to_cart']) && isset($_POST['id_produk']) && isset($_POST['quantity']) && isset($_POST['id_varian'])) {
     $id_produk = $_POST['id_produk'];
@@ -22,17 +21,6 @@ if (isset($_POST['add_to_cart']) && isset($_POST['id_produk']) && isset($_POST['
     $query = "INSERT INTO keranjang (id_user, id_produk, id_varian, quantity) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, 'iiii', $id_user, $id_produk, $id_varian, $quantity);
-=======
-// Cek apakah produk dan kuantitas sudah diterima
-if (isset($_POST['add_to_cart']) && isset($_POST['id_produk']) && isset($_POST['quantity'])) {
-    $id_produk = $_POST['id_produk'];
-    $quantity = $_POST['quantity'];
-
-    // Query untuk memasukkan produk ke keranjang
-    $query = "INSERT INTO keranjang (id_user, id_produk, quantity) VALUES (?, ?, ?)";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'iii', $id_user, $id_produk, $quantity);
->>>>>>> a5f4d975c6beefa0110785810ba45fb2446ebd54
 
     if (mysqli_stmt_execute($stmt)) {
         echo "<script>alert('Produk berhasil ditambahkan ke keranjang!'); window.location.href='keranjang.php';</script>";
