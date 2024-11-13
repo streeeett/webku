@@ -28,22 +28,7 @@ if ($id_produk > 0) {
     } else {
         echo "<script>alert('Gagal menghapus produk dari keranjang.'); window.location.href='keranjang.php';</script>";
     }
-} else {
-    echo "<script>alert('ID produk tidak valid.'); window.location.href='keranjang.php';</script>";
-// Hapus data terkait di keranjang
-$queryDeleteKeranjang = "DELETE FROM keranjang WHERE id_produk = $id_produk";
-mysqli_query($conn, $queryDeleteKeranjang);
-
-// Hapus varian yang tidak ada di array input
-$queryDeleteVarian = "DELETE FROM varian WHERE id_produk = $id_produk";
-mysqli_query($conn, $queryDeleteVarian);
-
-
-if (mysqli_stmt_execute($stmt)) {
-    echo "<script>alert('Produk berhasil dihapus dari keranjang!'); window.location.href='keranjang.php';</script>";
-} else {
-    echo "<script>alert('Gagal menghapus produk dari keranjang.'); window.location.href='keranjang.php';</script>";
-}
+} 
 
 mysqli_close($conn);
 ?>
