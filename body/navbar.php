@@ -8,9 +8,11 @@ if (isset($_POST["cari"])) {
 }
 ?>
 
-<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
+
+
+<nav class="navbar sticky-top navbar-expand-lg bg-warning-subtle">
   <div class="container-fluid">
-    <a class="navbar-brand" href="halaman.php">Shop</a>
+    <a class="navbar-brand" href="halaman.php">🅣🅞🅚🅞 🅖🅤🅐</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -27,7 +29,7 @@ if (isset($_POST["cari"])) {
       </ul>
 
   <form action="hasil.php" method="GET" class="navbar-nav me-auto mb-2 mb-lg-0" role="search">
-        <input name="keyword" class="form-control me-2" type="search" placeholder="Cari produk..." required>
+        <input name="keyword" class="form-control bg-warning-subtle fs-5 me-2" type="search" placeholder="Cari produk..." required>
         <button class="btn btn-outline-dark" type="submit">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
@@ -41,12 +43,16 @@ if (isset($_POST["cari"])) {
           <ul class="dropdown-menu">
             <?php if ($role === 'admin'): ?>
               <li><a class="dropdown-item" href="halaman/tambah.php"><i class="fa-solid fa-plus"></i> Tambah produk</a></li>
-              <li><a class="dropdown-item" href="main/data.php"><i class="fa-solid fa-chart-simple"></i> Data</a></li>
+              <li><a class="dropdown-item" href="data_toko/data.php"><i class="fa-solid fa-chart-simple"></i> Data</a></li>
+              <li><a class="dropdown-item" href="cek/admin_pesanan.php"><i class="fa-solid fa-list"></i> Data Pesanan</a></li>
+              <li><a class="dropdown-item" href="cek/pesanan.php"><i class="fa-solid fa-bag-shopping"></i> Pesanan</a></li>
               <li><a class="dropdown-item" href="keranjang/keranjang.php"><i class="fa-solid fa-cart-shopping"></i> Keranjang</a></li>
+              <li><a class="dropdown-item" href="profil/profil.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logreg/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             <?php elseif ($role === 'customer'): ?>
               <li><a class="dropdown-item" href="keranjang/keranjang.php"><i class="fa-solid fa-cart-shopping"></i> Keranjang</a></li>
+              <li><a class="dropdown-item" href="cek/pesanan.php"><i class="fa-solid fa-bag-shopping"></i> Pesanan</a></li>
               <li><a class="dropdown-item" href="profil/profil.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logreg/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>

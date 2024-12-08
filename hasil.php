@@ -37,7 +37,7 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
 
 <style>
         body {
-            background-color: #f8f9fa;
+            /* background-color: #f8f9fa; */
             font-family: Arial, sans-serif;
         }
         .card img {
@@ -51,23 +51,23 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
             margin: 5px;
         }
     </style>
-<body>
+<body style="background: linear-gradient(#ff7f00, #fbf400);">
   <?php include 'body/navbar.php'; ?>
 
   <div class="container mt-5">
-    <h2>Hasil Pencarian: "<?php echo htmlspecialchars($keyword); ?>"</h2>
+    <h2 class="fs-5 fw-bold">Hasil Pencarian: "<?php echo htmlspecialchars($keyword); ?>"</h2>
     <?php if (mysqli_num_rows($hasil) > 0): ?>
       <div class="row">
         <?php while ($produk = mysqli_fetch_assoc($hasil)): ?>
           <div class="col-md-4">
             <div class="card mb-4">
             <img src="halaman/img/<?= htmlspecialchars($produk['gambar']); ?>" class="card-img-top" alt="<?= htmlspecialchars($produk['nama']); ?>">
-              <div class="card-body">
+              <div class="card-body bg-warning-subtle">
                 <h5 class="card-title"><?= htmlspecialchars($produk['nama']); ?></h5>
                 <p class="card-text">Kategori: <?= htmlspecialchars($produk['kategori']); ?></p>
                 <p class="card-text">Harga: Rp <?= number_format($produk['harga'], 0, ',', '.'); ?></p>
               </div>
-              <div class="card-footer">
+              <div class="card-footer bg-warning-subtle">
                             <?php if ($role === 'admin'): ?>
                                 <a href="halaman/edit.php?id_produk=<?= $produk['id_produk']; ?>" class="btn btn-warning btn-custom"><i class="fa-solid fa-pen-to-square"></i> Ubah</a>
                                 <a href="detail_produk.php?id_produk=<?= $produk['id_produk']; ?>" class="btn btn-primary btn-custom"><i class="fa-solid fa-eye"></i> Lihat</a>
@@ -90,6 +90,10 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
     <a href="halaman.php" class="btn btn-secondary mt-3">Kembali</a>
   </div>
 
+  <?php include 'body/footer.php'; ?>
+
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

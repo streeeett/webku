@@ -6,14 +6,13 @@
     <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #f8f9fa;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
+           body {
+      /* background-color: #d2bab0; */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
         .kotak_login {
             width: 100%;
             max-width: 400px;
@@ -62,7 +61,7 @@
     }
     ?>
 
-    <div class="kotak_login">
+    <div class="kotak_login bg-warning bg-opacity-75">
         <p class="tulisan_login">Silahkan Login</p>
 
         <form action="../connection/proses_login.php" method="post">
@@ -84,12 +83,11 @@
                        placeholder="Password .." required>
             </div>
 
-            <button type="submit" class="btn btn-primary tombol_login">LOGIN</button>
+            <button type="submit" class="btn text-light bg-info tombol_login">LOGIN</button>
 
-            <div class="text-center mt-3">
-                <a class="link" href="../halaman.php">Kembali</a>
-                <a class="link" href="register.php">Register</a>
-            </div>
+            <p class="text-center mt-3 text-capitalize">
+      belum Punya Akun? <a href="register.php" class="text-decoration-none">Buat</a>
+    </p>
         </form>
     </div>
 

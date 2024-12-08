@@ -14,8 +14,8 @@
         <h5 class="text-uppercase">Quick Links</h5>
         <ul class="list-unstyled">
           <li><a href="#" class="text-white text-decoration-none"><i class="fa-solid fa-house"></i> Home</a></li>
-          <li><a href="#" class="text-white text-decoration-none">About</a></li>
-          <li><a href="#" class="text-white text-decoration-none">Services</a></li>
+          <!-- <li><a href="#" class="text-white text-decoration-none">About</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Services</a></li> -->
         </ul>
       </div>
 

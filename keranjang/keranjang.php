@@ -32,12 +32,12 @@ $result = $stmt->get_result();
     <title>Keranjang Belanja</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="background: linear-gradient(#ff7f00, #fbf400);">
     <div class="container my-5">
-        <h1 class="text-center mb-4">Keranjang Belanja</h1>
+        <h1 class="text-left mb-4">Keranjang Belanja</h1>
 
         <?php if ($result->num_rows > 0): ?>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-warning">
                 <thead>
                     <tr>
                         <th>Foto Produk</th>
@@ -66,8 +66,8 @@ $result = $stmt->get_result();
                         <td>
                             <form action="update_keranjang.php" method="post" class="d-flex">
                                 <input type="hidden" name="id_produk" value="<?= $row['id_produk']; ?>">
-                                <input type="number" name="quantity" value="<?= $row['quantity']; ?>" min="1" class="form-control" style="width: 70px;">
-                                <button type="submit" class="btn btn-primary btn-sm ms-2">Update</button>
+                                <input type="number" name="quantity" value="<?= $row['quantity']; ?>" min="1" class="form-control bg-primary-subtle" style="width: 70px;">
+                                <button type="submit" class="btn btn-primary  btn-sm ms-2">Update</button>
                             </form>
                         </td>
                         <td>Rp <?= number_format($total_harga, 2, ',', '.'); ?></td>
@@ -77,7 +77,7 @@ $result = $stmt->get_result();
                     </tr>
                     <?php endwhile; ?>
                     <tr>
-                        <td colspan="5" class="text-end"><strong>Total Belanja</strong></td>
+                        <td colspan="5" class="text-center"><strong>Total Belanja</strong></td>
                         <td colspan="2"><strong>Rp <?= number_format($total_belanja, 2, ',', '.'); ?></strong></td>
                     </tr>
                 </tbody>
@@ -86,11 +86,25 @@ $result = $stmt->get_result();
             <p class="text-center">Keranjang Anda kosong!</p>
         <?php endif; ?>
 
-        <div class="text-center mt-4">
-            <a href="../halaman.php" class="btn btn-secondary">Lanjut Belanja</a>
-        </div>
+        <?php
+// Tambahan tombol checkout
+if ($result->num_rows > 0): 
+?>
+    <div class="text-center mt-4">
+        <a href="../cek/checkout.php" class="btn btn-success btn-lg">Checkout</a>
+        <a href="../halaman.php" class="btn btn-secondary">Lanjut Belanja</a>
+    </div>
+<?php 
+else: 
+?>
+    <p class="text-center">Keranjang Anda kosong!</p>
+<?php 
+endif; 
+?>
+
     </div>
 
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -32,7 +32,7 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
 
     <style>
         body {
-            background-color: #f8f9fa;
+            background: linear-gradient(180deg, #e27b15, #222121);
             font-family: Arial, sans-serif;
         }
         .card img {
@@ -47,7 +47,7 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
         }
     </style>
 </head>
-<body>
+<body class="bg-opacity-75">
 
 <div class="container my-5">
 
@@ -57,14 +57,14 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
                 <div class="col">
                     <div class="card h-100">
                         <img src="halaman/img/<?= htmlspecialchars($row['gambar']); ?>" class="card-img-top" alt="<?= htmlspecialchars($row['nama']); ?>">
-                        <div class="card-body">
+                        <div class="card-body bg-warning-subtle">
                             <h5 class="card-title"><?= htmlspecialchars($row['nama']); ?></h5>
                             <p class="card-text">Rp. <?= number_format($row['harga'], 0, ',', '.'); ?></p>
                             <p class="card-text"><small class="text-muted"><?= htmlspecialchars($row['kategori']); ?></small></p>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer bg-warning-subtle">
                             <?php if ($role === 'admin'): ?>
-                                <a href="halaman/edit.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-warning btn-custom"><i class="fa-solid fa-pen-to-square"></i> Ubah</a>
+                                <a href="halaman/edit.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-warning btn-custom "><i class="fa-solid fa-pen-to-square"></i> Ubah</a>
                                 <a href="detail_produk.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-primary btn-custom"><i class="fa-solid fa-eye"></i> Lihat</a>
                             <a href="halaman/hapus.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-danger btn-custom"><i class="fa-solid fa-trash"></i> Hapus</a>
             <?php elseif ($role === 'customer'): ?>
@@ -84,24 +84,26 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
     <?php endif; ?>
 
     <div class="pagination justify-content-center mt-4">
-    <?php if ($page > 1): ?>
+
+        <?php if ($page > 1): ?>
         <li class="page-item">
             <a class="page-link" href="?page=<?= $page - 1 ?>"><i class="fa-solid fa-chevron-left"></i> Previous</a>
         </li>
-    <?php endif; ?>
+        <?php endif; ?>
 
-    <?php for ($i = 1; $i <= $pages; $i++): ?>
+        <?php for ($i = 1; $i <= $pages; $i++): ?>
         <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+            <a class="page-link " href="?page=<?= $i ?>"><?= $i ?></a>
         </li>
-    <?php endfor; ?>
+        <?php endfor; ?>
 
-    <?php if ($page < $pages): ?>
+        <?php if ($page < $pages): ?>
         <li class="page-item">
             <a class="page-link" href="?page=<?= $page + 1 ?>">Next <i class="fa-solid fa-chevron-right"></i></a>
         </li>
-    <?php endif; ?>
-</div>
+        <?php endif; ?>
+        
+    </div>
         
     
 </div>

@@ -1,3 +1,11 @@
+<?php 
+
+// Cek apakah user sudah login dan memiliki peran sebagai admin
+if ($_SESSION['role'] != "admin") {
+    header("location:../halaman.php?");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,41 +20,46 @@
 <table class="table table-striped">
   <thead>
     <tr>
-        <th>DATA PRODUK</th>
+        <th>DATA USER</th>
     </tr>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">NAMA PRODUK</th>
-      <th scope="col">HARGA</th>
-      <th scope="col">KATEGORI</th>
+      <th scope="col">TELPON</th>
+      <th scope="col">USERNAME</th>
+      <th scope="col">EMAIL</th>
+      <th scope="col">FOTO</th>
+      <th scope="col">ROLE</th>
       <th scope="col">AKSI</th>
     </tr>
   </thead>
   <tbody>
   <?php
     require '../connection/koneksi.php';
-    $query = mysqli_query($conn, "SELECT * FROM produk");
+    $query = mysqli_query($conn, "SELECT * FROM users");
     while($row = mysqli_fetch_array($query)){
         ?>
        <tr>
        <td>
-            <?= $row['id_produk']?></td>
+            <?= $row['phone']?></td>
         </td>
 
         <td>
-            <?= $row['nama']?></td>
+            <?= $row['username']?></td>
         </td>
 
         <td>
-            <?= $row['harga']?></td>
+            <?= $row['email']?></td>
         </td>
 
         <td>
-            <?= $row['kategori']?></td>
+        <img src="../profil/uploads/<?= htmlspecialchars($row['photo']); ?>" style="width: 80px;" >
+        </td>
+        
+        <td>
+            <?= $row['role']?></td>
         </td>
 
         <td>
-        <a href="../detail_produk.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-primary btn-custom"><i class="fa-solid fa-eye"></i> Lihat</a>
+        <!-- <a href="../detail_produk.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-primary btn-custom"><i class="fa-solid fa-eye"></i> Lihat</a> -->
         <a href="../halaman.php" class="btn btn-warning btn-custom"><i class="fa-solid fa-caret-left"></i> KEMBALI</a>
         </td>
        </tr>

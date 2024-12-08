@@ -2,7 +2,6 @@
 session_start();
 require '../connection/koneksi.php';
 
-// Pastikan pengguna sudah login
 if (!isset($_SESSION['id_user'])) {
     header("Location: login.php?pesan=harus_login");
     exit;
@@ -10,7 +9,6 @@ if (!isset($_SESSION['id_user'])) {
 
 $id_user = $_SESSION['id_user'];
 
-// Query untuk mendapatkan data profil pengguna
 $query = "SELECT * FROM users WHERE id_user = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param('i', $id_user);
@@ -32,7 +30,21 @@ $user = $result->fetch_assoc();
         <h1 class="text-center mb-4">Profil Saya</h1>
         
         <?php if ($user): ?>
-            <form action="update_profil.php" method="post" class="p-4 border rounded">
+            <form action="update_profil.php" method="post" enctype="multipart/form-data" class="p-4 border rounded">
+                <!-- Tampilkan Foto Profil Jika Ada -->
+                <div class="text-center mb-3">
+                    <?php if ($user['photo']): ?>
+                        <img src="uploads/<?= htmlspecialchars($user['photo']); ?>" alt="Foto Profil" class="img-thumbnail" width="150">
+                    <?php else: ?>
+                        <p>Foto profil belum diunggah.</p>
+                    <?php endif; ?>
+                </div>
+
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Unggah Foto Baru</label>
+                    <input type="file" class="form-control" id="photo" name="photo">
+                </div>
+
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" 

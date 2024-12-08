@@ -1,6 +1,13 @@
 <?php
 require '../connection/koneksi.php';
 
+session_start();
+
+// Cek apakah user sudah login dan memiliki peran sebagai admin
+if ($_SESSION['role'] != "admin") {
+    header("location:../halaman.php?");
+}
+
 // Mendapatkan ID produk dari URL
 $id_produk = $_GET['id_produk'];
 

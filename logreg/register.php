@@ -1,3 +1,41 @@
+<?php
+// Koneksi ke database
+require '../connection/koneksi.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Ambil data dari form
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
+
+    // Validasi data
+    if ($password !== $confirmPassword) {
+        echo "<script>alert('Password dan konfirmasi password tidak cocok');</script>";
+    } else {
+        // Hash password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $role = 'customer'; // Tetapkan peran pengguna baru sebagai "customer"
+
+        // Masukkan data ke database
+        $query = "INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('ssss', $username, $email, $hashedPassword, $role);
+
+        if ($stmt->execute()) {
+            echo "<script>alert('Registrasi berhasil!'); window.location.href='login.php';</script>";
+        } else {
+            echo "<script>alert('Registrasi gagal, coba lagi');</script>";
+        }
+
+        $stmt->close();
+    }
+
+    // Tutup koneksi
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +45,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background-color: #d2bab0;
+      /* background-color: #d2bab0; */
       height: 100vh;
       display: flex;
       justify-content: center;
@@ -25,27 +63,27 @@
 </head>
 <body>
 
-  <div class="register-container bg-info">
+  <div class="register-container bg-warning bg-opacity-75">
     <h3 class="text-center mb-4">Register</h3>
-    <form>
+    <form method="POST" action="">
       <div class="mb-3">
-        <label for="fullName" class="form-label">Nama Asli</label>
-        <input type="text" class="form-control" id="fullName" placeholder="Masukan Nama ASli Anda" required>
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Masukan Username Anda" required>
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Masukan Email" required>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Masukan Email" required>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Masukan Password" required>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password" required>
       </div>
       <div class="mb-3">
         <label for="confirmPassword" class="form-label">Konfirmasi Password</label>
-        <input type="password" class="form-control" id="confirmPassword" placeholder="Konfirmasi Password" required>
+        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Konfirmasi Password" required>
       </div>
       <div class="d-grid">
-        <button type="submit" class="btn btn-primary w-100">Daftar</button>
+        <button type="submit" class="btn bg-info text-light w-100">Daftar</button>
       </div>
     </form>
     <p class="text-center mt-3">

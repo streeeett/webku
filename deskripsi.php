@@ -38,7 +38,7 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
     <title>Detail Deskripsi</title>
     <link rel="stylesheet" href="style/deskripsi.css">
 </head>
-<body>
+<body style="background: linear-gradient(#ff7f00, #fbf400);">
 
 <form action="keranjang/tambah.php" method="post">
     <div class="deskripsi">
@@ -59,7 +59,7 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
 
                 <!-- Pilihan Varian Rasa -->
                 <label for="varian">Pilih Varian Rasa:</label>
-                <select name="id_varian" id="id_varian" required>
+                <select class="form-select" name="id_varian" id="id_varian" required>
         <?php
         // Query untuk mendapatkan varian produk dari database
         $varianQuery = "SELECT id_varian, nama_varian FROM varian WHERE id_produk = ?";
@@ -76,7 +76,7 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
                 <?php if ($role === 'admin' || $role === 'customer'): ?>
                     <!-- Input quantity -->
                     <label for="quantity">Quantity:</label>
-                    <input type="number" name="quantity" value="1" min="1" required>
+                    <input class="form-control" type="number" name="quantity" value="1" min="1" required>
 
                     <!-- Tombol Tambah ke Keranjang -->
                     <input type="submit" class="btn" value="Tambah ke Keranjang" name="add_to_cart">

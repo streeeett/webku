@@ -1,37 +1,54 @@
 <?php
-session_start();
 require '../connection/koneksi.php';
+session_start();
 
-// Pastikan user sudah login
 if (!isset($_SESSION['id_user'])) {
-    echo "<script>alert('Anda harus login terlebih dahulu!'); window.location.href='login.php';</script>";
+    header("Location: login.php?pesan=harus_login");
     exit;
 }
 
-// Ambil ID user dari sesi
 $id_user = $_SESSION['id_user'];
+$id_produk = $_POST['id_produk'];
+$id_varian = isset($_POST['id_varian']) ? $_POST['id_varian'] : null;
+$quantity = $_POST['quantity'];
 
-// Cek apakah produk, varian, dan kuantitas sudah diterima
-if (isset($_POST['add_to_cart']) && isset($_POST['id_produk']) && isset($_POST['quantity']) && isset($_POST['id_varian'])) {
-    $id_produk = $_POST['id_produk'];
-    $id_varian = $_POST['id_varian']; // Tambahkan ini untuk menangani varian
-    $quantity = $_POST['quantity'];
+// Cek apakah produk dengan varian tersebut sudah ada di keranjang
+$query_check = "
+    SELECT quantity 
+    FROM keranjang 
+    WHERE id_user = ? 
+    AND id_produk = ? 
+    AND (id_varian = ? OR (id_varian IS NULL AND ? IS NULL))";
+$stmt_check = $conn->prepare($query_check);
+$stmt_check->bind_param("iiii", $id_user, $id_produk, $id_varian, $id_varian);
+$stmt_check->execute();
+$result_check = $stmt_check->get_result();
 
-    // Query untuk memasukkan produk beserta variannya ke keranjang
-    $query = "INSERT INTO keranjang (id_user, id_produk, id_varian, quantity) VALUES (?, ?, ?, ?)";
-    $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'iiii', $id_user, $id_produk, $id_varian, $quantity);
+if ($result_check->num_rows > 0) {
+    // Jika produk sudah ada, update quantity-nya
+    $row = $result_check->fetch_assoc();
+    $new_quantity = $row['quantity'] + $quantity;
 
-    if (mysqli_stmt_execute($stmt)) {
-        echo "<script>alert('Produk berhasil ditambahkan ke keranjang!'); window.location.href='keranjang.php';</script>";
-    } else {
-        echo "<script>alert('Gagal menambahkan produk ke keranjang.');</script>";
-    }
-
-    mysqli_stmt_close($stmt);
+    $query_update = "
+        UPDATE keranjang 
+        SET quantity = ? 
+        WHERE id_user = ? 
+        AND id_produk = ? 
+        AND (id_varian = ? OR (id_varian IS NULL AND ? IS NULL))";
+    $stmt_update = $conn->prepare($query_update);
+    $stmt_update->bind_param("iiiii", $new_quantity, $id_user, $id_produk, $id_varian, $id_varian);
+    $stmt_update->execute();
 } else {
-    echo "<script>alert('Data produk tidak lengkap.');</script>";
+    // Jika produk belum ada, tambahkan sebagai item baru
+    $query_insert = "
+        INSERT INTO keranjang (id_user, id_produk, id_varian, quantity) 
+        VALUES (?, ?, ?, ?)";
+    $stmt_insert = $conn->prepare($query_insert);
+    $stmt_insert->bind_param("iiii", $id_user, $id_produk, $id_varian, $quantity);
+    $stmt_insert->execute();
 }
 
-mysqli_close($conn);
+// Redirect ke halaman keranjang setelah berhasil
+header("Location: keranjang.php");
+exit;
 ?>

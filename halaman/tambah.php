@@ -67,11 +67,11 @@ if (isset($_POST["submit"])) {
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card shadow-sm">
-                <div class="card-header text-center">
-                    <h4>Upload Produk</h4>
+            <div class="card shadow-sm ">
+                <div class="card-header text-center bg-warning-subtle">
+                    <h4>Tambah Produk Baru</h4>
                 </div>
-                <div class="card-body">
+                <div class="card-body  bg-warning bg-opacity-75">
                     <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
                         <!-- Input Nama, Deskripsi, Kategori, Harga, Gambar -->
                         <div class="mb-3">
@@ -91,16 +91,16 @@ if (isset($_POST["submit"])) {
                             <input type="number" name="harga" id="harga" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label for="gambar" class="form-label">Upload Gambar</label>
+                            <label for="gambar" class="form-label">Tambahkan Gambar</label>
                             <input type="file" name="gambar" id="gambar" class="form-control" accept=".jpg, .jpeg, .png" required>
                         </div>
 
                         <!-- Input Varian -->
                         <div id="varianContainer" class="mb-3">
-                            <label class="form-label">Varian Rasa</label>
+                            <label class="form-label">Varian</label>
                             <div class="input-group mb-2">
                                 <input type="text" name="varian[]" class="form-control" placeholder="Masukkan varian rasa">
-                                <button type="button" class="btn btn-outline-secondary" onclick="addVarianField()">Tambah Varian</button>
+                                <button type="button" class="btn btn-secondary" onclick="addVarianField()"><i class="fa-solid fa-plus"></i> Tambah Varian</button>
                             </div>
                         </div>
 
@@ -110,7 +110,7 @@ if (isset($_POST["submit"])) {
                     </form>
                 </div>
                 <div class="card-footer text-center">
-                    <a href="../halaman.php" class="btn btn-link">Lihat Data Produk</a>
+                    <a href="../data_toko/data.php" class="btn btn-priary">Lihat Data Produk</a>
                 </div>
             </div>
         </div>
@@ -124,7 +124,7 @@ function addVarianField() {
     inputGroup.classList.add("input-group", "mb-2");
     inputGroup.innerHTML = `
         <input type="text" name="varian[]" class="form-control" placeholder="Masukkan varian rasa">
-        <button type="button" class="btn btn-outline-danger" onclick="removeVarianField(this)">Hapus</button>
+        <button type="button" class="btn btn-danger" onclick="removeVarianField(this)"><i class="fa-thin fa-x"></i> Hapus</button>
     `;
     container.appendChild(inputGroup);
 }
