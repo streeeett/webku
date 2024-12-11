@@ -79,7 +79,7 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
                     <input class="form-control" type="number" name="quantity" value="1" min="1" required>
 
                     <!-- Tombol Tambah ke Keranjang -->
-                    <input type="submit" class="btn" value="Tambah ke Keranjang" name="add_to_cart">
+                    <input type="submit" class="btn btn-info" value="Tambah ke Keranjang" name="add_to_cart">
                 <?php endif; ?>    
 
             </div>

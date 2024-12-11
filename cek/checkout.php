@@ -36,19 +36,20 @@ if ($total_belanja == 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="background: linear-gradient(#edbfac, #dbd8bb);">
     <div class="container my-5">
         <h1 class="text-center mb-4">Checkout</h1>
         <form action="proses_checkout.php" method="post">
             <div class="mb-3">
                 <label for="alamat_pengiriman" class="form-label">Alamat Pengiriman</label>
-                <textarea class="form-control" name="alamat_pengiriman" id="alamat_pengiriman" rows="3" required></textarea>
+                <textarea class="form-control bg-warning bg-opacity-75" name="alamat_pengiriman" id="alamat_pengiriman" rows="3" required></textarea>
             </div>
             <div class="mb-3">
                 <label for="metode_pembayaran" class="form-label">Metode Pembayaran</label>
-                <select class="form-select" name="metode_pembayaran" id="metode_pembayaran" required>
+                <select class="form-select bg-warning bg-opacity-75" name="metode_pembayaran" id="metode_pembayaran" required>
                     <option value="Transfer Bank">Transfer Bank</option>
                     <option value="COD">COD</option>
                 </select>
@@ -56,7 +57,7 @@ if ($total_belanja == 0) {
             <div class="mb-3">
                 <strong>Total Belanja: Rp <?= number_format($total_belanja, 2, ',', '.'); ?></strong>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Proses Checkout</button>
+            <button type="submit" class="btn btn-info w-100">Proses Checkout</button>
         </form>
     </div>
 </body>

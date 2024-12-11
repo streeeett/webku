@@ -36,12 +36,13 @@ foreach ($details as $detail) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Pesanan</title>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="background: linear-gradient(#edbfac, #dbd8bb);">
     <div class="container my-5">
         <h1 class="text-left">Kelola Pesanan</h1>
-        <table class="table table-bordered mt-4">
+        <table class="table table-bordered mt-4 table-warning">
             <thead>
                 <tr>
                     <th>ID Pesanan</th>
@@ -51,7 +52,6 @@ foreach ($details as $detail) {
                     <th>Status Pesanan</th>
                     <th>Detail Barang</th>
                     <th>Bukti</th>
-                    <th>Aksi</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -71,6 +71,7 @@ foreach ($details as $detail) {
                                 data-bs-target="#detail-<?= $row['id_pesanan']; ?>" 
                                 aria-expanded="false" 
                                 aria-controls="detail-<?= $row['id_pesanan']; ?>">
+                                <i class="fa-regular fa-eye"></i>
                                 Lihat Barang
                             </button>
                             <div class="collapse mt-2" id="detail-<?= $row['id_pesanan']; ?>">
@@ -94,34 +95,37 @@ foreach ($details as $detail) {
     <?php if ($row['bukti_transfer']): ?>
         <a href="uploads/<?= $row['bukti_transfer']; ?>" target="_blank">Lihat Bukti Transfer</a>
     <?php else: ?>
-        <span>Belum Ada Bukti</span>
+        <span>Kosong</span>
     <?php endif; ?>
 </td>
 <td>
     <?php if ($row['status_pembayaran'] === 'Menunggu Konfirmasi'): ?>
         <a href="konfirmasi_pembayaran.php?id_pesanan=<?= $row['id_pesanan']; ?>" class="btn btn-primary btn-sm">Konfirmasi</a>
     <?php endif; ?>
-</td>
-
-
-                        <td>
-                            <?php if ($row['status_pesanan'] === 'Dipesan'): ?>
+    
+    <?php if ($row['status_pesanan'] === 'Dipesan'): ?>
                                 <a href="proses_pesanan.php?id_pesanan=<?= $row['id_pesanan']; ?>&status=Diproses" class="btn btn-primary btn-sm">Proses</a>
                             <?php elseif ($row['status_pesanan'] === 'Diproses'): ?>
-                                <a href="proses_pesanan.php?id_pesanan=<?= $row['id_pesanan']; ?>&status=Dikirim" class="btn btn-warning btn-sm">Kirim</a>
+                                <a href="proses_pesanan.php?id_pesanan=<?= $row['id_pesanan']; ?>&status=Dikirim" class="btn btn-warning btn-sm"><i class="fa-regular fa-paper-plane"></i> Kirim</a>
                             <?php elseif ($row['status_pesanan'] === 'Dikirim'): ?>
-                                <a href="proses_pesanan.php?id_pesanan=<?= $row['id_pesanan']; ?>&status=Selesai" class="btn btn-success btn-sm">Selesaikan</a>
+                                <a href="proses_pesanan.php?id_pesanan=<?= $row['id_pesanan']; ?>&status=Selesai" class="btn btn-success btn-sm"><i class="fa-solid fa-check"></i> Selesaikan</a>
                             <?php endif; ?>
                             <a href="hapus_pesanan.php?id_pesanan=<?= $row['id_pesanan']; ?>" 
                                onclick="return confirm('Yakin ingin menghapus pesanan ini?')" 
-                               class="btn btn-danger btn-sm">Hapus</a>
-                        </td>
+                               class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Hapus</a>
+
+</td>
+
+
+                        <!-- <td>
+                           
+                        </td> -->
                         
                     </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
-        <a href="../halaman.php" class="btn btn-warning">Kembali</a>
+        <a href="../halaman.php" class="btn btn-warning"><i class="fa-solid fa-house"></i> Kembali</a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

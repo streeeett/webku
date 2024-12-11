@@ -29,10 +29,11 @@ $result = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keranjang Belanja</title>
+    <title>Keranjang</title>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body style="background: linear-gradient(#ff7f00, #fbf400);">
+<body style="background: linear-gradient(#edbfac, #dbd8bb);">
     <div class="container my-5">
         <h1 class="text-left mb-4">Keranjang Belanja</h1>
 
@@ -67,12 +68,12 @@ $result = $stmt->get_result();
                             <form action="update_keranjang.php" method="post" class="d-flex">
                                 <input type="hidden" name="id_produk" value="<?= $row['id_produk']; ?>">
                                 <input type="number" name="quantity" value="<?= $row['quantity']; ?>" min="1" class="form-control bg-primary-subtle" style="width: 70px;">
-                                <button type="submit" class="btn btn-primary  btn-sm ms-2">Update</button>
+                                <button type="submit" class="btn btn-primary  btn-sm ms-2"><i class="fa-solid fa-arrows-rotate"></i> Update</button>
                             </form>
                         </td>
                         <td>Rp <?= number_format($total_harga, 2, ',', '.'); ?></td>
                         <td>
-                            <a href="hapus_keranjang.php?id_produk=<?= $row['id_produk']; ?>" onclick="return confirm('Yakin ingin menghapus barang ini?')" class="btn btn-danger btn-sm">Hapus</a>
+                            <a href="hapus_keranjang.php?id_produk=<?= $row['id_produk']; ?>" onclick="return confirm('Yakin ingin menghapus barang ini?')" class="btn btn-danger btn-sm"><i class="fa-thin fa-x"></i> Hapus</a>
                         </td>
                     </tr>
                     <?php endwhile; ?>
@@ -83,7 +84,9 @@ $result = $stmt->get_result();
                 </tbody>
             </table>
         <?php else: ?>
-            <p class="text-center">Keranjang Anda kosong!</p>
+            <p class="text-center fs-4">Keranjang Anda kosong!</p>
+            <a href="../halaman.php" class="btn btn-secondary"><i class="fa-solid fa-house"></i> Lanjut Belanja</a>
+
         <?php endif; ?>
 
         <?php
@@ -92,13 +95,11 @@ if ($result->num_rows > 0):
 ?>
     <div class="text-center mt-4">
         <a href="../cek/checkout.php" class="btn btn-success btn-lg">Checkout</a>
-        <a href="../halaman.php" class="btn btn-secondary">Lanjut Belanja</a>
+        <a href="../halaman.php" class="btn btn-secondary"><i class="fa-solid fa-house"></i> Lanjut Belanja</a>
     </div>
 <?php 
 else: 
-?>
-    <p class="text-center">Keranjang Anda kosong!</p>
-<?php 
+?><?php 
 endif; 
 ?>
 

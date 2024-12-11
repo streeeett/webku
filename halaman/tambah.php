@@ -59,10 +59,11 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Produk</title>
+    <title>Tambah Produk</title>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body style="background: linear-gradient(#edbfac, #dbd8bb);">
 
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -105,7 +106,7 @@ if (isset($_POST["submit"])) {
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" name="submit" class="btn bg-info fw-bold">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -124,8 +125,7 @@ function addVarianField() {
     inputGroup.classList.add("input-group", "mb-2");
     inputGroup.innerHTML = `
         <input type="text" name="varian[]" class="form-control" placeholder="Masukkan varian rasa">
-        <button type="button" class="btn btn-danger" onclick="removeVarianField(this)"><i class="fa-thin fa-x"></i> Hapus</button>
-    `;
+        <button type="button" class="btn btn-danger" onclick="removeVarianField(this)"><i class="fa-thin fa-x"></i> Hapus</button>`;
     container.appendChild(inputGroup);
 }
 

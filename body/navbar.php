@@ -29,7 +29,7 @@ if (isset($_POST["cari"])) {
       </ul>
 
   <form action="hasil.php" method="GET" class="navbar-nav me-auto mb-2 mb-lg-0" role="search">
-        <input name="keyword" class="form-control bg-warning-subtle fs-5 me-2" type="search" placeholder="Cari produk..." required>
+        <input name="keyword" class="form-control bg-warning-subtle border-dark fs-5 me-2" type="search" placeholder="Cari produk..." required>
         <button class="btn btn-outline-dark" type="submit">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
@@ -57,7 +57,7 @@ if (isset($_POST["cari"])) {
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logreg/logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
             <?php else: ?>
-              <li><a class="dropdown-item" href="logreg/register.php">Register</a></li>
+              <li><a class="dropdown-item" href="logreg/register.php"><i class="fa-solid fa-registered"></i> Register</a></li>
               <li><a class="dropdown-item" href="logreg/login.php"><i class="fa-solid fa-right-from-bracket"></i> Login</a></li>
             <?php endif; ?>
           </ul>

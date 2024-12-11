@@ -17,10 +17,10 @@ if ($_SESSION['role'] != "admin") {
 
 
 <body>
-<table class="table table-striped">
-  <thead>
+<table class="table table-striped table-warning">
+  <thead class="table-danger">
     <tr>
-        <th>DATA USER</th>
+        <th style="background-color: #edbfac;">DATA USER</th>
     </tr>
     <tr>
       <th scope="col">TELPON</th>

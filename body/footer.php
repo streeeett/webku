@@ -14,6 +14,9 @@
         <h5 class="text-uppercase">Quick Links</h5>
         <ul class="list-unstyled">
           <li><a href="#" class="text-white text-decoration-none"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="abot.php" class="text-white text-decoration-none">About us</a></li>
+          <!-- <li><a class="text-white text-decoration-none" href="https://wa.me/6285780718693?text=Halo%2C%20kak,%20saya mau minta%20nomor%20rekening%20untuk%20transfer!" target="_blank"><i class="fa-solid fa-circle-exclamation"></i> Info Lebih Lanjut</a></li> -->
+
           <!-- <li><a href="#" class="text-white text-decoration-none">About</a></li>
           <li><a href="#" class="text-white text-decoration-none">Services</a></li> -->
         </ul>

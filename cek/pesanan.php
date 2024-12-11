@@ -34,9 +34,10 @@ $result = mysqli_query($conn, $query);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesanan Saya</title>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="background: linear-gradient(#edbfac, #dbd8bb);">
     <div class="container my-5">
         <h1 class="text-left mb-4">Pesanan Saya</h1>
 
@@ -57,9 +58,9 @@ $result = mysqli_query($conn, $query);
                         WHERE detail_pesanan.id_pesanan = $id_pesanan";
                     $detail_result = mysqli_query($conn, $query_detail);
                     ?>
-                    <div class="accordion-item">
+                    <div class="accordion-item bg-warning-subtle">
                         <h2 class="accordion-header" id="heading<?= $id_pesanan; ?>">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $id_pesanan; ?>" aria-expanded="false" aria-controls="collapse<?= $id_pesanan; ?>">
+                            <button class="accordion-button collapsed bg-success-subtle" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $id_pesanan; ?>" aria-expanded="false" aria-controls="collapse<?= $id_pesanan; ?>">
                                 Pesanan Tanggal <?= date('d-m-Y H:i', strtotime($row['tanggal_pesanan'])); ?>
                             </button>
                         </h2>
@@ -79,7 +80,7 @@ $result = mysqli_query($conn, $query);
 
                                 <hr>
                                 <h5>Detail Pesanan:</h5>
-                                <table class="table table-bordered">
+                                <table class="table table-bordered table-secondary">
                                     <thead>
                                         <tr>
                                             <th>Nama Produk</th>

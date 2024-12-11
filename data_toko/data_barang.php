@@ -19,10 +19,10 @@ if ($_SESSION['role'] != "admin") {
 
 
 <body>
-<table class="table table-striped">
-  <thead>
+<table class="table table-striped table-warning">
+  <thead class="table-danger">
     <tr>
-        <th>DATA PRODUK</th>
+        <th style="background-color: #edbfac;">DATA PRODUK</th>
     </tr>
     <tr>
       <th scope="col">ID</th>

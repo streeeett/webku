@@ -43,19 +43,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Bukti Transfer</title>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body style="background: linear-gradient(#edbfac, #dbd8bb);">
     <div class="container my-5">
         <h1>Upload Bukti Transfer</h1>
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="bukti_transfer" class="form-label">Bukti Transfer</label>
+                <label for="bukti_transfer" class="form-label fs-5">Bukti Transfer</label>
                 <input type="file" class="form-control" name="bukti_transfer" id="bukti_transfer" required>
             </div>
-            <button type="submit" class="btn btn-primary">Unggah</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-upload"></i> Unggah</button>
         </form>
-        <a href="pesanan.php" class="btn btn-secondary mt-3">Kembali</a>
+        <a href="pesanan.php" class="btn btn-secondary mt-3"><i class="fa-solid fa-house"></i> Kembali</a>
     </div>
 </body>
 </html>

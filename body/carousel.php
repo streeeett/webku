@@ -6,10 +6,10 @@
     <img src="img/banner.avif" class="d-block w-100" alt="...">
   </div>
   <div class="carousel-item">
-    <img src="img/banner2.jpg" class="d-block w-100" alt="...">
+    <img src="img/Toko ku.png" class="d-block w-100" alt="...">
   </div>
   <div class="carousel-item">
-    <img src="img/toko.jpg" class="d-block w-100" alt="...">
+    <img src="img/" class="d-block w-100" alt="...">
   </div>
 </div>
 </div>

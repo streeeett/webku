@@ -83,7 +83,7 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
         <div class="alert alert-info text-center mt-4">Tidak ada produk yang tersedia.</div>
     <?php endif; ?>
 
-    <div class="pagination justify-content-center mt-4">
+    <div class="pagination justify-content-center mt-4 border-dark">
 
         <?php if ($page > 1): ?>
         <li class="page-item">

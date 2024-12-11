@@ -91,19 +91,20 @@ if (isset($_POST["submit"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Barang</title>
+    <title>Edit</title>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 </head>
-<body class="bg-light">
+<body style="background: linear-gradient(#edbfac, #dbd8bb);">
 
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="text-center">Edit Barang</h3>
+                <div class="card-header bg-primary bg-warning-subtle">
+                    <h3 class="text-center">Edit Produk</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body bg-warning bg-opacity-75">
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Barang</label>
@@ -135,12 +136,12 @@ if (isset($_POST["submit"])) {
                             <?php foreach ($varianList as $varian): ?>
                                 <div class="input-group mb-2">
                                     <input type="text" name="varian[]" class="form-control" value="<?= htmlspecialchars($varian['nama_varian']); ?>" required>
-                                    <button type="button" class="btn btn-outline-danger" onclick="removeVarianField(this)">Hapus</button>
+                                    <button type="button" class="btn btn-danger" onclick="removeVarianField(this)">Hapus</button>
                                 </div>
                             <?php endforeach; ?>
                             <div class="input-group mb-2">
                                 <input type="text" name="varian[]" class="form-control" placeholder="Masukkan varian rasa baru">
-                                <button type="button" class="btn btn-outline-secondary" onclick="addVarianField()">Tambah Varian</button>
+                                <button type="button" class="btn btn-secondary" onclick="addVarianField()">Tambah Varian</button>
                             </div>
                         </div>
 
@@ -161,7 +162,7 @@ function addVarianField() {
     inputGroup.classList.add("input-group", "mb-2");
     inputGroup.innerHTML = `
         <input type="text" name="varian[]" class="form-control" placeholder="Masukkan varian rasa">
-        <button type="button" class="btn btn-outline-danger" onclick="removeVarianField(this)">Hapus</button>
+        <button type="button" class="btn btn-danger" onclick="removeVarianField(this)">Hapus</button>
     `;
     container.appendChild(inputGroup);
 }

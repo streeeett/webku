@@ -22,19 +22,22 @@ $user = $result->fetch_assoc();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Pengguna</title>
+    <title>Profil</title>
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container my-5">
-        <h1 class="text-center mb-4">Profil Saya</h1>
+<body style="background: linear-gradient(#edbfac, #dbd8bb);">
+    <div class="container my-5 ">
+        <h1 class="text-center mb-4">Profil</h1>
         
+        <div class="bg-warning bg-opacity-75">
+
         <?php if ($user): ?>
             <form action="update_profil.php" method="post" enctype="multipart/form-data" class="p-4 border rounded">
                 <!-- Tampilkan Foto Profil Jika Ada -->
-                <div class="text-center mb-3">
+                <div class="text-left mb-3">
                     <?php if ($user['photo']): ?>
-                        <img src="uploads/<?= htmlspecialchars($user['photo']); ?>" alt="Foto Profil" class="img-thumbnail" width="150">
+                        <img src="uploads/<?= htmlspecialchars($user['photo']); ?>" alt="Foto Profil" class="rounded-circle border-black"  width="150" height="150">
                     <?php else: ?>
                         <p>Foto profil belum diunggah.</p>
                     <?php endif; ?>
@@ -63,11 +66,13 @@ $user = $result->fetch_assoc();
                            value="<?= htmlspecialchars($user['phone'] ?? ''); ?>">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Simpan Perubahan</button>
             </form>
         <?php else: ?>
             <p>Data profil tidak ditemukan.</p>
         <?php endif; ?>
+
+        </div>
 
         <div class="text-center mt-4">
             <a href="../halaman.php" class="btn btn-secondary">Kembali</a>
