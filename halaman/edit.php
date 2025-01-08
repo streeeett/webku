@@ -94,17 +94,18 @@ if (isset($_POST["submit"])) {
     <title>Edit</title>
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../style/edit-produk.css">
 </head>
 <body style="background: linear-gradient(#edbfac, #dbd8bb);">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary bg-warning-subtle">
+<div class="container-edit-product">
+    <!-- <div class="row justify-content-center"> -->
+        <div class="col">
+            <div class="card">
+                <div class="card-title">
                     <h3 class="text-center">Edit Produk</h3>
                 </div>
-                <div class="card-body bg-warning bg-opacity-75">
+                <div class="card-body">
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Barang</label>
@@ -152,7 +153,7 @@ if (isset($_POST["submit"])) {
                 </div>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </div>
 
 <script>

@@ -17,7 +17,7 @@ body {
     display: flex;
     max-width: 800px; /* Ukuran maksimal untuk card */
     width: 100%; /* Agar menyesuaikan dengan container */
-    background-color: blanchedalmond;
+    background: linear-gradient(#d9d8d1, #fbf400);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;

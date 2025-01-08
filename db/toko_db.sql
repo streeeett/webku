@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 08 Des 2024 pada 15.14
+-- Waktu pembuatan: 08 Jan 2025 pada 03.27
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -41,9 +41,30 @@ CREATE TABLE `detail_pesanan` (
 --
 
 INSERT INTO `detail_pesanan` (`id_detail`, `id_pesanan`, `id_produk`, `quantity`, `harga_satuan`, `id_varian`) VALUES
-(13, 12, 24, 2, 6000.00, NULL),
-(14, 13, 26, 1, 6000.00, NULL),
-(15, 14, 26, 1, 6000.00, NULL);
+(28, 23, 31, 1, 5000.00, NULL),
+(35, 29, 31, 2, 5000.00, NULL),
+(36, 29, 33, 1, 10000.00, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id_kategori` int(11) NOT NULL,
+  `nama_kategori` varchar(255) NOT NULL,
+  `icon` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `kategori`
+--
+
+INSERT INTO `kategori` (`id_kategori`, `nama_kategori`, `icon`) VALUES
+(3, 'minuman', 'fa-solid fa-bottle-water'),
+(4, 'mainan', 'fa-solid fa-car'),
+(5, 'makanan', 'fa-solid fa-bowl-food');
 
 -- --------------------------------------------------------
 
@@ -83,9 +104,8 @@ CREATE TABLE `pesanan` (
 --
 
 INSERT INTO `pesanan` (`id_pesanan`, `id_user`, `tanggal_pesanan`, `total_harga`, `alamat_pengiriman`, `metode_pembayaran`, `status_pembayaran`, `status_pesanan`, `bukti_transfer`) VALUES
-(12, 8, '2024-12-08 18:15:54', 12000.00, 'cikampek', 'Transfer Bank', 'Sudah Dibayar', 'Dipesan', NULL),
-(13, 8, '2024-12-08 18:17:19', 6000.00, 'bandung', 'Transfer Bank', '', 'Selesai', '1733658988_depositphotos_406779092-stock-illustration-hastag-isometric-symbol-keywords.jpg'),
-(14, 8, '2024-12-08 20:55:42', 6000.00, 'cijalu', 'Transfer Bank', '', 'Dipesan', '1733666152_Jenis-Hacker.jpg');
+(23, 8, '2024-12-11 14:48:25', 5000.00, 'bandung', 'COD', '', 'Diproses', '1733903353_WhatsApp_Image_2024-11-28_at_20.58.21-removebg-preview.png'),
+(29, 8, '2025-01-06 21:17:15', 20000.00, 'sds', 'Transfer Bank', 'Belum Dibayar', 'Dipesan', NULL);
 
 -- --------------------------------------------------------
 
@@ -99,21 +119,41 @@ CREATE TABLE `produk` (
   `harga` int(255) NOT NULL,
   `kategori` varchar(255) NOT NULL,
   `deskripsi` text NOT NULL,
-  `gambar` varchar(200) NOT NULL
+  `gambar` varchar(200) NOT NULL,
+  `id_kategori` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `produk`
 --
 
-INSERT INTO `produk` (`id_produk`, `nama`, `harga`, `kategori`, `deskripsi`, `gambar`) VALUES
-(24, 'pudding', 6000, 'makanan', 'ini pudding enak', '67343f6999c62.png'),
-(25, 'teh ', 5000, 'minuman', 'ini teh asu', '67414d2a1ce95.jpeg'),
-(26, 'pangsit', 6000, 'makanan', 'ini pangsit', '67543c48604b2.jpg'),
-(27, 'bakso ', 10000, 'makanan', 'ini bakso ', '67543c723b3ab.jpg'),
-(28, 'es kuwut', 6000, 'minuman', 'es enak', '67543d43681e0.png'),
-(29, 'pangsigma', 8000, 'makanan', 'ini pangsit coklat', '67543d8a3e618.jpeg'),
-(30, 'pisang goreng', 5000, 'makanan', 'ini pisang goreng', '67543de0b27ea.jpg');
+INSERT INTO `produk` (`id_produk`, `nama`, `harga`, `kategori`, `deskripsi`, `gambar`, `id_kategori`) VALUES
+(31, 'Pangsit', 5000, 'makanan', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque possimus adipisci perferendis odit voluptas doloribus nemo fuga omnis placeat earum cupiditate, velit molestias mollitia in nihil ad laboriosam a aperiam!\r\n', '6756d7c74f442.jpg', NULL),
+(33, 'bakso', 10000, 'makanan', 'ini bakso', '677129cfe1139.jpg', NULL),
+(34, 'teh', 5000, 'minuman', 'ini teh', '677dd1fe55e73.jpeg', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `promo`
+--
+
+CREATE TABLE `promo` (
+  `id_promo` int(11) NOT NULL,
+  `kode_promo` varchar(50) NOT NULL,
+  `potongan_persen` int(11) NOT NULL,
+  `kuota` int(11) DEFAULT NULL,
+  `berlaku_mulai` date NOT NULL,
+  `berlaku_sampai` date NOT NULL,
+  `dibuat_pada` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data untuk tabel `promo`
+--
+
+INSERT INTO `promo` (`id_promo`, `kode_promo`, `potongan_persen`, `kuota`, `berlaku_mulai`, `berlaku_sampai`, `dibuat_pada`) VALUES
+(1, 'promo10', 5, NULL, '2024-12-09', '2024-12-10', '2024-12-09 12:01:03');
 
 -- --------------------------------------------------------
 
@@ -137,7 +177,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `username`, `email`, `password`, `role`, `phone`, `photo`) VALUES
 (8, 'rusdi', 'rusdikun@gmail.com', '$2y$10$5oW2foJLwCMpE0KVRPRnR.YMTAoLr39AxZokyTzieZnJTueMES8Wq', 'admin', '423432424324', 'photo_8.png'),
-(9, 'fais', 'masfais@gmail.com', '$2y$10$MLLrdkAU6g1FSLm.01rbMeF2rsEqGWkQyo0RXp.ExuTN2qkcYow.G', 'customer', '085894957090', 'photo_9.jpeg'),
 (11, 'asep', 'asep@gmail.com', '$2y$10$XMgzLvDa0m6BWvBMbp29f.rux2gSIiay.Cv/a8Uttk32oq8pnibA.', 'customer', '085812313123244', 'photo_11.jpg'),
 (14, 'rusdi', 'ganteng@gmail.com', '$2y$10$WkQBBuGVvlDpeoguaIf6Se3OwqRALmVX1nooIvWiqO4AuTY0B3U2G', 'customer', NULL, NULL);
 
@@ -158,15 +197,11 @@ CREATE TABLE `varian` (
 --
 
 INSERT INTO `varian` (`id_varian`, `id_produk`, `nama_varian`) VALUES
-(41, 24, 'coklat'),
-(42, 25, 'manis'),
-(43, 25, 'pait'),
-(44, 25, ''),
-(47, 26, 'asin'),
-(48, 27, ''),
-(49, 28, 'original'),
-(50, 29, 'original'),
-(51, 30, 'original');
+(61, 31, 'asin'),
+(62, 31, ''),
+(63, 33, 'original'),
+(65, 34, 'original'),
+(66, 34, '');
 
 --
 -- Indexes for dumped tables
@@ -180,6 +215,12 @@ ALTER TABLE `detail_pesanan`
   ADD KEY `id_pesanan` (`id_pesanan`),
   ADD KEY `id_produk` (`id_produk`),
   ADD KEY `fk_varian` (`id_varian`);
+
+--
+-- Indeks untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id_kategori`);
 
 --
 -- Indeks untuk tabel `keranjang`
@@ -201,7 +242,15 @@ ALTER TABLE `pesanan`
 -- Indeks untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  ADD PRIMARY KEY (`id_produk`);
+  ADD PRIMARY KEY (`id_produk`),
+  ADD KEY `fk_produk_kategori` (`id_kategori`);
+
+--
+-- Indeks untuk tabel `promo`
+--
+ALTER TABLE `promo`
+  ADD PRIMARY KEY (`id_promo`),
+  ADD UNIQUE KEY `kode_promo` (`kode_promo`);
 
 --
 -- Indeks untuk tabel `users`
@@ -225,37 +274,49 @@ ALTER TABLE `varian`
 -- AUTO_INCREMENT untuk tabel `detail_pesanan`
 --
 ALTER TABLE `detail_pesanan`
-  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `keranjang`
 --
 ALTER TABLE `keranjang`
-  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT untuk tabel `pesanan`
 --
 ALTER TABLE `pesanan`
-  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_pesanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+
+--
+-- AUTO_INCREMENT untuk tabel `promo`
+--
+ALTER TABLE `promo`
+  MODIFY `id_promo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `varian`
 --
 ALTER TABLE `varian`
-  MODIFY `id_varian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_varian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -282,6 +343,12 @@ ALTER TABLE `keranjang`
 --
 ALTER TABLE `pesanan`
   ADD CONSTRAINT `pesanan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`) ON DELETE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `produk`
+--
+ALTER TABLE `produk`
+  ADD CONSTRAINT `fk_produk_kategori` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`) ON DELETE SET NULL;
 
 --
 -- Ketidakleluasaan untuk tabel `varian`

@@ -61,39 +61,45 @@ if (isset($_POST["submit"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Produk</title>
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../style/tambah-produk.css">
 </head>
 <body style="background: linear-gradient(#edbfac, #dbd8bb);">
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-sm ">
-                <div class="card-header text-center bg-warning-subtle">
+<div class="container-add-product">
+    <!-- <div class="row justify-content-center"> -->
+        <div class="col">
+            <div class="card ">
+                <div class="card-title">
                     <h4>Tambah Produk Baru</h4>
                 </div>
-                <div class="card-body  bg-warning bg-opacity-75">
+
+                <div class="card-body">
                     <form action="" method="post" enctype="multipart/form-data" autocomplete="off">
                         <!-- Input Nama, Deskripsi, Kategori, Harga, Gambar -->
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama Produk</label>
-                            <input type="text" name="nama" id="nama" class="form-control" required>
+                            <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Produk" required>
                         </div>
+                        
                         <div class="mb-3">
                             <label for="deskripsi" class="form-label">Deskripsi</label>
-                            <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3" required></textarea>
+                            <textarea name="deskripsi" id="deskripsi" class="form-control" rows="3" placeholder="Deskrpsi" required></textarea>
                         </div>
+
                         <div class="mb-3">
                             <label for="kategori" class="form-label">Kategori</label>
-                            <input type="text" name="kategori" id="kategori" class="form-control" required>
+                            <input type="text" name="kategori" id="kategori" class="form-control" placeholder="Kategori" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="harga" class="form-label">Harga</label>
-                            <input type="number" name="harga" id="harga" class="form-control" required>
+                            <input type="number" name="harga" id="harga" class="form-control" placeholder="Harga    " required>
                         </div>
+
                         <div class="mb-3">
                             <label for="gambar" class="form-label">Tambahkan Gambar</label>
-                            <input type="file" name="gambar" id="gambar" class="form-control" accept=".jpg, .jpeg, .png" required>
+                            <input type="file" name="gambar" id="gambar" class="form-control" accept=".jpg, .jpeg, .png" placeholder="Gambar" required>
                         </div>
 
                         <!-- Input Varian -->
@@ -110,12 +116,14 @@ if (isset($_POST["submit"])) {
                         </div>
                     </form>
                 </div>
+
                 <div class="card-footer text-center">
                     <a href="../data_toko/data.php" class="btn btn-priary">Lihat Data Produk</a>
                 </div>
+
             </div>
         </div>
-    </div>
+    <!-- </div> -->
 </div>
 
 <script>

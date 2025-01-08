@@ -8,8 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
            body {
-      /* background-color: #d2bab0; */
+            background-image: url('https://c4.wallpaperflare.com/wallpaper/673/218/396/anime-landscape-anime-garden-sunshine-flowers-wallpaper-preview.jpg');
       height: 100vh;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -56,11 +58,20 @@
 </head>
 <body>
 
+
+
     <?php 
     if (isset($_GET['pesan']) && $_GET['pesan'] == "gagal") {
         echo "<div class='alert alert-danger text-center'>Username dan Password tidak sesuai!</div>";
     }
     ?>
+
+    <?php
+    if (isset($_GET['pesan']) && $_GET['pesan'] == 'harus_login') {
+    echo "<div class='alert alert-danger text-center'>Anda harus login terlebih dahulu!</div>";
+    }
+    ?>
+
 
     <div class="kotak_login bg-warning bg-opacity-75">
         <p class="tulisan_login">Silahkan Login</p>

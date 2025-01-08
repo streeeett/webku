@@ -62,6 +62,8 @@ if ($_SESSION['role'] != "admin") {
 
         <td>
         <a href="../detail_produk.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-primary btn-custom"><i class="fa-solid fa-eye"></i> Lihat</a>
+        <a href="../halaman/edit.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-warning btn-custom "><i class="fa-solid fa-pen-to-square"></i> Ubah</a>
+        <a href="../halaman/hapus.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-danger btn-custom"><i class="fa-solid fa-trash"></i> Hapus</a>
         <a href="../halaman.php" class="btn btn-warning btn-custom"><i class="fa-solid fa-caret-left"></i> KEMBALI</a>
         </td>
        </tr>

@@ -10,26 +10,29 @@ if (isset($_POST["cari"])) {
 
 
 
-<nav class="navbar sticky-top navbar-expand-lg bg-warning-subtle">
+<nav class="navbar sticky-top navbar-expand-lg bg-dark-subtle">
   <div class="container-fluid">
-    <a class="navbar-brand" href="halaman.php">🅣🅞🅚🅞 🅖🅤🅐</a>
+  <a class="navbar-brand" href="halaman.php">
+      <img src="img/logo_s.png" alt="ShoU" width="70" height="44">
+    </a>
+    <a style="margin-left: -10px;" class="navbar-brand" href="halaman.php">𝚂𝚑𝚘𝚄</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <!-- <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="halaman.php"><i class="fa-solid fa-house"></i> Home</a>
+        <li style="margin-left: 10px;" class="nav-item">
+          <!-- <a class="nav-link active" aria-current="page" href="halaman.php"> Home</a> -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li> -->
+          <a class="nav-link" href="abot.php"> About</a>
+        </li>
 
       </ul>
 
   <form action="hasil.php" method="GET" class="navbar-nav me-auto mb-2 mb-lg-0" role="search">
-        <input name="keyword" class="form-control bg-warning-subtle border-dark fs-5 me-2" type="search" placeholder="Cari produk..." required>
+        <input name="keyword" class="form-control bg-dark-subtle border-black fs-5 me-2" type="search" placeholder="Cari produk..." required>
         <button class="btn btn-outline-dark" type="submit">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
@@ -40,11 +43,12 @@ if (isset($_POST["cari"])) {
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-user"></i>
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu bg-dark-subtle">
             <?php if ($role === 'admin'): ?>
               <li><a class="dropdown-item" href="halaman/tambah.php"><i class="fa-solid fa-plus"></i> Tambah produk</a></li>
+              <li><a class="dropdown-item" href="admin/tambah_kategori.php"><i class="fa-solid fa-square-plus"></i> Tambah Kategori</a></li>
               <li><a class="dropdown-item" href="data_toko/data.php"><i class="fa-solid fa-chart-simple"></i> Data</a></li>
-              <li><a class="dropdown-item" href="cek/admin_pesanan.php"><i class="fa-solid fa-list"></i> Data Pesanan</a></li>
+              <li><a class="dropdown-item" href="admin/admin_pesanan.php"><i class="fa-solid fa-list"></i> Data Pesanan</a></li>
               <li><a class="dropdown-item" href="cek/pesanan.php"><i class="fa-solid fa-bag-shopping"></i> Pesanan</a></li>
               <li><a class="dropdown-item" href="keranjang/keranjang.php"><i class="fa-solid fa-cart-shopping"></i> Keranjang</a></li>
               <li><a class="dropdown-item" href="profil/profil.php"><i class="fa-solid fa-circle-user"></i> Profile</a></li>

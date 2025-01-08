@@ -4,7 +4,7 @@ session_start();
 
 // Pastikan pengguna sudah login
 if (!isset($_SESSION['id_user'])) {
-    header("Location: login.php?pesan=harus_login");
+    header("Location: ../logreg/login.php?pesan=harus_login");
     exit;
 }
 
@@ -31,15 +31,15 @@ $result = $stmt->get_result();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Keranjang</title>
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="../style/keranjang.css">
 </head>
 <body style="background: linear-gradient(#edbfac, #dbd8bb);">
-    <div class="container my-5">
-        <h1 class="text-left mb-4">Keranjang Belanja</h1>
+    <div class="container-cart">
+        <h1 class="cart-title">Keranjang Belanja</h1>
 
         <?php if ($result->num_rows > 0): ?>
-            <table class="table table-bordered table-warning">
-                <thead>
+            <table class="table">
                     <tr>
                         <th>Foto Produk</th>
                         <th>Nama Produk</th>
@@ -49,8 +49,6 @@ $result = $stmt->get_result();
                         <th>Total Harga</th>
                         <th>Aksi</th>
                     </tr>
-                </thead>
-                <tbody>
                     <?php 
                     $total_belanja = 0;
                     while ($row = $result->fetch_assoc()): 
@@ -59,16 +57,16 @@ $result = $stmt->get_result();
                     ?>
                     <tr>
                         <td>
-                            <img src="../halaman/img/<?= htmlspecialchars($row['gambar']); ?>" alt="<?= htmlspecialchars($row['nama']); ?>" style="width: 80px;">
+                            <img src="../halaman/img/<?= htmlspecialchars($row['gambar']); ?>" alt="<?= htmlspecialchars($row['nama']); ?>">
                         </td>
                         <td><?= htmlspecialchars($row['nama']); ?></td>
                         <td><?= htmlspecialchars($row['nama_varian']) ?: 'Tidak ada varian'; ?></td> <!-- Tampilkan nama varian -->
                         <td>Rp <?= number_format($row['harga'], 2, ',', '.'); ?></td>
                         <td>
-                            <form action="update_keranjang.php" method="post" class="d-flex">
+                            <form action="update_keranjang.php" method="post" class="update">
                                 <input type="hidden" name="id_produk" value="<?= $row['id_produk']; ?>">
-                                <input type="number" name="quantity" value="<?= $row['quantity']; ?>" min="1" class="form-control bg-primary-subtle" style="width: 70px;">
-                                <button type="submit" class="btn btn-primary  btn-sm ms-2"><i class="fa-solid fa-arrows-rotate"></i> Update</button>
+                                <input type="number" name="quantity" value="<?= $row['quantity']; ?>" min="1" class="control" style="width: 70px;">
+                                <button type="submit" class="buton"><i class="fa-solid fa-arrows-rotate"></i> Update</button>
                             </form>
                         </td>
                         <td>Rp <?= number_format($total_harga, 2, ',', '.'); ?></td>
@@ -81,7 +79,6 @@ $result = $stmt->get_result();
                         <td colspan="5" class="text-center"><strong>Total Belanja</strong></td>
                         <td colspan="2"><strong>Rp <?= number_format($total_belanja, 2, ',', '.'); ?></strong></td>
                     </tr>
-                </tbody>
             </table>
         <?php else: ?>
             <p class="text-center fs-4">Keranjang Anda kosong!</p>

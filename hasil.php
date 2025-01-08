@@ -4,25 +4,32 @@ require 'connection/koneksi.php';
 // Ambil keyword dari parameter GET
 $keyword = $_GET['keyword'] ?? '';
 
-if (!$keyword) {
-    header('Location: halaman.php'); // Kembali ke home jika keyword kosong
-    exit;
-}
-
 // Fungsi pencarian produk
 function cari($keyword) {
     global $conn;
-    $query = "SELECT * FROM produk WHERE 
-              nama LIKE '%$keyword%' OR 
-              kategori LIKE '%$keyword%' OR 
-              harga LIKE '%$keyword%'";
+
+    if ($keyword) {
+        $query = "SELECT * FROM produk WHERE 
+                  nama LIKE '%$keyword%' OR 
+                  kategori LIKE '%$keyword%' OR 
+                  harga LIKE '%$keyword%'";
+    } else {
+        // Jika keyword kosong, tampilkan semua produk
+        $query = "SELECT * FROM produk";
+    }
+
     return mysqli_query($conn, $query);
 }
 
+// Ambil semua kategori dari database
+$queryKategori = "SELECT * FROM kategori";
+$kategoriResult = mysqli_query($conn, $queryKategori);
+
+// Ambil hasil pencarian produk
 $hasil = cari($keyword);
 
+// Tentukan role pengguna
 $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', 'guest'
-
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +62,8 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
   <?php include 'body/navbar.php'; ?>
 
   <div class="container mt-5">
+
+
     <h2 class="fs-5 fw-bold">Hasil Pencarian: "<?php echo htmlspecialchars($keyword); ?>"</h2>
     <?php if (mysqli_num_rows($hasil) > 0): ?>
       <div class="row">
@@ -89,11 +98,11 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
     <?php endif; ?>
     <a href="halaman.php" class="btn btn-secondary mt-3">Kembali</a>
   </div>
+   
 
-  <?php include 'body/footer.php'; ?>
 
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 
+<?php include 'body/footer.php'; ?>

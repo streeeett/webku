@@ -4,9 +4,10 @@ session_start();
 
 // Pastikan pengguna sudah login
 if (!isset($_SESSION['id_user'])) {
-    header("Location: login.php?pesan=harus_login");
+    header("Location: ../logreg/login.php?pesan=harus_login");
     exit;
 }
+
 
 // Ambil id_user dari session
 $id_user = intval($_SESSION['id_user']);
@@ -71,7 +72,7 @@ $result = mysqli_query($conn, $query);
                                 <p><strong>Total Harga:</strong> Rp <?= number_format($row['total_harga'], 2, ',', '.'); ?></p>
                                 <p><strong>Status Pembayaran:</strong> <?= $row['status_pembayaran']; ?></p>
                                 <?php if ($row['status_pembayaran'] === 'Belum Dibayar'): ?>
-                                    <a href="bayar.php?id_pesanan=<?= $row['id_pesanan']; ?>" class="btn btn-success">Unggah Bukti Transfer</a>
+                                    <a href="bayar.php?id_pesanan=<?= $row['id_pesanan']; ?>" class="btn btn-success"><i class="fa-solid fa-upload"></i> Unggah Bukti Transfer</a>
                                 <?php elseif ($row['status_pembayaran'] === 'Menunggu Konfirmasi'): ?>
                                     <button class="btn btn-secondary" disabled>Menunggu Konfirmasi Admin</button>
                                 <?php else: ?>

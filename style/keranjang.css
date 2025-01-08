@@ -1,0 +1,57 @@
+.cart-title{
+    color: aliceblue;
+}
+
+.container-cart{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    
+}
+
+
+.table th, td{
+    border: 1px solid #000000; /* Opsional: untuk menambahkan garis pembatas */
+    padding: 8px;
+    background-color: #fed495; /* Warna kuning muda */
+}
+.table td{
+    background-color: #fed495; /* Warna kuning muda */
+
+}
+
+td img{
+    width: 100px;
+}
+
+.update{
+    display: flex;
+}
+
+.control{
+    border: none;
+    border-radius: 10px;
+    background-color: cyan;
+}
+
+.buton {
+    display: inline-block; /* Agar terlihat seperti tombol */
+    padding: 0.25rem 0.5rem; /* Padding kecil sesuai dengan btn-sm */
+    font-size: 0.875rem; /* Ukuran font lebih kecil sesuai dengan btn-sm */
+    font-weight: 400; /* Sesuai dengan gaya tombol default */
+    text-align: center; /* Pusatkan teks */
+    text-decoration: none; /* Hilangkan garis bawah */
+    color: #fff; /* Warna teks putih */
+    background-color: #0d6efd; /* Warna biru utama */
+    border: 1px solid #0d6efd; /* Border dengan warna yang sama */
+    border-radius: 0.25rem; /* Rounded corners */
+    margin-left: 0.5rem; /* Margin kiri (setara dengan ms-2) */
+    cursor: pointer; /* Tunjukkan kursor pointer */
+  }
+  
+  .buton:hover {
+    background-color: #0b5ed7; /* Warna biru lebih gelap saat hover */
+    border-color: #0a58ca;
+  }
+  
+
+  

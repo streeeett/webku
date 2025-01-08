@@ -1,0 +1,85 @@
+    .back{
+        background-image: url("../img/loooogo.png");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text{
+        font-size: 50px;
+        color: black;
+        text-align: center;
+        transform: translateY(-200px); 
+    }
+
+    .text p{
+        font-size: 15px;
+    }
+
+    .text button{
+        font-size: 20px;
+        background: rgba(4, 170, 109, 0.1);
+        border: none;
+    }
+
+    .text button a{
+        text-decoration: none;
+        color: black;
+    }
+
+    .back2{
+        display: flex;
+        /* margin-top: 10px; */
+        padding-top: 10px;
+    }
+
+    .back2 img{
+        height: 450px;
+        width: 1200px;
+    }
+
+    .desk{
+        display: block;
+        padding-left: 10px;
+    }
+
+    .desk h1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* margin-left: 100px; */
+    }
+
+    .desk p{
+        font-size: 20px;
+    }   
+
+    
+    .back3{
+        display: flex;
+        /* margin-top: 10px; */
+        padding-top: 10px;
+    }
+
+    .back3 img{
+        height: 450px;
+        width: 1200px;
+    }
+
+    .gambar{
+        display: block;
+        padding-left: 10px;
+    }
+
+    .gambar h1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* margin-left: 100px; */
+    }
+
+    .gambar p{
+        font-size: 20px;
+    }

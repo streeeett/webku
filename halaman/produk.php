@@ -26,15 +26,13 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Admin</title>
-
-    <!-- Bootstrap CSS -->
+    <title>ShoU</title>
 
     <style>
-        body {
-            background: linear-gradient(180deg, #e27b15, #222121);
+        /* body {
+            background: linear-gradient(#edbfac, #dbd8bb);
             font-family: Arial, sans-serif;
-        }
+        } */
         .card img {
             height: 200px;
             object-fit: cover;
@@ -63,17 +61,17 @@ $role = $_SESSION['role'] ?? 'guest'; // Possible values: 'admin', 'customer', '
                             <p class="card-text"><small class="text-muted"><?= htmlspecialchars($row['kategori']); ?></small></p>
                         </div>
                         <div class="card-footer bg-warning-subtle">
+
                             <?php if ($role === 'admin'): ?>
-                                <a href="halaman/edit.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-warning btn-custom "><i class="fa-solid fa-pen-to-square"></i> Ubah</a>
+                                <!-- <a href="halaman/edit.php?id_produk=" class="btn btn-warning btn-custom "><i class="fa-solid fa-pen-to-square"></i> Ubah</a> -->
                                 <a href="detail_produk.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-primary btn-custom"><i class="fa-solid fa-eye"></i> Lihat</a>
-                            <a href="halaman/hapus.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-danger btn-custom"><i class="fa-solid fa-trash"></i> Hapus</a>
+                            <!-- <a href="halaman/hapus.php?id_produk=" class="btn btn-danger btn-custom"><i class="fa-solid fa-trash"></i> Hapus</a> -->
             <?php elseif ($role === 'customer'): ?>
                 <a href="detail_produk.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-primary btn-custom"><i class="fa-solid fa-eye"></i> Lihat</a>
-
             <?php else: ?>
                 <a href="detail_produk.php?id_produk=<?= $row['id_produk']; ?>" class="btn btn-primary btn-custom"><i class="fa-solid fa-eye"></i> Lihat</a>
-
             <?php endif; ?>
+
                         </div>
                     </div>
                 </div>
